@@ -1,6 +1,6 @@
 class ScoreURL
   def work(url)
-    SharedCount.score(url)
-    Bitly.score(url)
+    SharedCountScorer.score(url)
+    BitlyScorer.score(url)
   end
 end
