@@ -3,7 +3,6 @@ gem 'mongo_mapper'
 gem "resque"
 gem 'resque-web', require: 'resque_web'
 gem 'bitly', '0.9.0'
-gem 'tux'
 gem 'rake'
 gem 'bson_ext'
 gem 'rest-client'
