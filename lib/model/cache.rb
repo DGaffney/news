@@ -1,7 +1,7 @@
 class Cache
-  include MongoMapper::Document
   extend ScorerRequests
   extend CrawlerRequests
+  include MongoMapper::Document
   key :url, String
   key :content, String
   
