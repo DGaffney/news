@@ -1,5 +1,5 @@
 require 'mongo_mapper'
-require 'rest_client'
+require 'rest-client'
 MongoMapper.connection = Mongo::MongoClient.new("localhost", 27017, :pool_size => 25, :pool_timeout => 60)
 MongoMapper.database = "news"
 Dir[File.dirname(__FILE__) + '/lib/*.rb'].each {|file| require file }
