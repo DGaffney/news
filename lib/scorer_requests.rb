@@ -1,7 +1,7 @@
 module ScorerRequests
   def request_shared_count(url)
     request = Setting.shared_count_url + "?url=" + url
-    RestClient.get(url)
+    RestClient.get(request)
   end
   
   def request_bitly(url)
