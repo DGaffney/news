@@ -1,1 +1,1 @@
-require 'mongomapper'
+require 'mongo_mapper'
