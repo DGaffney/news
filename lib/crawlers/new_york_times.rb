@@ -1,9 +1,12 @@
 class NewYorkTimes < Crawler
   def self.crawl
-    @newswire_api_key = Setting.newswire_api_key
-    
+    @newswire_api_key = Setting.nytimes_newswire_api_key
+    offset = 0
+    articles = self.most_recent_linear(offset)
     resque = Resque.new
-    resque << ScoreURL.new(url)
+    articles.each do |article|
+          resque << ScoreURL.new(url)
+    end
   end
   
   def self.select_fields(article, source_id)
