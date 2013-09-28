@@ -1,3 +1,5 @@
+load 'environment.rb'
+
 desc "Set up core DB settings"
 task :seeds do
   Setting.shared_count_url = "http://api.sharedcount.com/"
