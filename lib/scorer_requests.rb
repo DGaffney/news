@@ -1,4 +1,4 @@
-module
+module ScorerRequests
   def self.request_shared_count(url)
     request = Setting.shared_count_url + "?url=" + url
     RestClient.get(url)
