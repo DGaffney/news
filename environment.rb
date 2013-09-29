@@ -2,6 +2,8 @@ require 'mongo_mapper'
 require 'rest-client'
 require 'hashie'
 require 'json'
+require 'resque'
+require 'resque/tasks'
 MongoMapper.connection = Mongo::MongoClient.new("localhost", 27017, :pool_size => 25, :pool_timeout => 60)
 MongoMapper.database = "news"
 Dir[File.dirname(__FILE__) + '/lib/*.rb'].each {|file| require file }

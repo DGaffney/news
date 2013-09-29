@@ -1,4 +1,5 @@
 source 'https://rubygems.org'
+gem 'rack', '~> 1.4.5'
 gem 'mongo_mapper'
 gem "resque"
 gem 'resque-web', require: 'resque_web'
