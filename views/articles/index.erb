@@ -1,3 +1,20 @@
-<% @articles.each_with_index do |article, i| %>
-  <%= partial "/articles/article", :locals => {:article => article, :i => i} %>
+<% @articles[0..2].each_with_index do |article, i| %>
+<div class="row-fluid">
+  <%= partial "/articles/article_1", :locals => {:article => article, :i => i} %>
+  </div>
+<% end %>
+<% @articles[3..8].each_with_index do |article, i| %>
+<div class="row-fluid">
+  <%= partial "/articles/article_2", :locals => {:article => article, :i => i} %>
+  </div>
+<% end %>
+<% @articles[9..20].each_with_index do |article, i| %>
+<div class="row-fluid">
+  <%= partial "/articles/article_3", :locals => {:article => article, :i => i} %>
+  </div>
+<% end %>
+<% @articles[21..44].each_with_index do |article, i| %>
+<div class="row-fluid">
+  <%= partial "/articles/article_4", :locals => {:article => article, :i => i} %>
+  </div>
 <% end %>
