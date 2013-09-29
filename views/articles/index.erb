@@ -1,0 +1,3 @@
+<% @articles.each_with_index do |article, i| %>
+  <%= partial "/articles/article", :locals => {:article => article, :i => i} %>
+<% end %>
