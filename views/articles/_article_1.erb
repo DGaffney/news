@@ -1,1 +1,3 @@
-<span class="span12 text-center"><h1><%= article.title %></h1></span>
+<span class="span12 text-center"><h1><%= partial "/articles/title", :locals => {:article => article} %></h1></span>
+<p><%= partial "/articles/byline", :locals => {:article => article} %></p>
+<%= partial "/articles/content", :locals => {:article => article} %>
