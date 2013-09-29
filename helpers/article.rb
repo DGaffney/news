@@ -1,4 +1,4 @@
-get "/news"
+get "/news" do
   conditions = {}
   conditions[:order] = params[:order] || :created_at.desc
   conditions[:per_page] = params[:per_page] && params[:per_page].to_i ||25
