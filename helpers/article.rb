@@ -1,7 +1,7 @@
 get "/news" do
   conditions = {}
   conditions[:order] = params[:order] || :created_at.desc
-  conditions[:per_page] = params[:per_page] && params[:per_page].to_i ||25
+  conditions[:per_page] = params[:per_page] && params[:per_page].to_i ||45
   conditions[:page] = params[:page] && params[:page].to_i || 1
   @articles = Article.paginate(conditions.dup)
   @page = conditions[:page]

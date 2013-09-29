@@ -1,1 +1,9 @@
-<%= article.title %>
+<% if (0..2).include?(i) %>
+  <%= partial "/articles/article_1", :locals => {:article => article, :i => i} %>
+<% elsif (3..8).include?(i) %>
+  <%= partial "/articles/article_2", :locals => {:article => article, :i => i} %>
+<% elsif (9..20).include?(i) %>
+  <%= partial "/articles/article_3", :locals => {:article => article, :i => i} %>
+<% elsif (21..44).include?(i) %>
+  <%= partial "/articles/article_4", :locals => {:article => article, :i => i} %>
+<% end %>
