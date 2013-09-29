@@ -3,6 +3,6 @@ class ProcessArticle
   @queue = :main
 
   def self.perform(article, source)
-    self.send("process_#{source}", article)
+    self.send("process_#{source}", Hashie::Mash[article])
   end
 end
