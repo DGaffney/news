@@ -1,4 +1,4 @@
-load 'new_york_times_media.rb'
+require_relative 'new_york_times_media.rb'
 
 class NewYorkTimesArticle
   include MongoMapper::EmbeddedDocument
