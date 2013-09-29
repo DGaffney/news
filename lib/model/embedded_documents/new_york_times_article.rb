@@ -1,3 +1,5 @@
+load 'new_york_times_media.rb'
+
 class NewYorkTimesArticle
   include MongoMapper::EmbeddedDocument
   key :section, String
