@@ -1,11 +1,20 @@
 class NewYorkTimes < Crawler
-  def self.crawl
+  def self.crawl(periodicity=60*60*24)
     @newswire_api_key = Setting.nytimes_newswire_api_key
     offset = 0
     articles = self.most_recent_linear(offset)
-    resque = Resque.new
-    articles.each do |article|
-          resque << ScoreURL.new(url)
+    newest = Time.parse(articles.first.updated_date)
+    finished = false
+    while !finished
+      articles.each do |article|
+        print "."
+        # next if finished
+        Resque.enqueue(ScoreURL, article.url)
+        Resque.enqueue(ProcessArticle, article, "new_york_times")
+        # finished = true if Time.parse(article.updated_date) < newest-periodicity
+      end
+      offset += 20
+      articles = self.most_recent_linear(offset) if !finished
     end
   end
   
