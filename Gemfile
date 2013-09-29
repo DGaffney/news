@@ -9,3 +9,7 @@ gem 'bson_ext'
 gem 'rest-client'
 gem 'json'
 gem 'hashie'
+gem "sinatra"
+gem "tux"
+gem "oauth"
+gem "pry"
