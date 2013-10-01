@@ -20,14 +20,14 @@ module ParamsHelper
   end
   
   def where(conditions)
-    conditions.delete_if{|k,v| [:order, :per_page, :page].include?(k)}
+    conditions.dup.delete_if{|k,v| [:order, :per_page, :page].include?(k)}
   end
   
   def paginate(conditions)
-    Hash[[:page, :per_page].zip(conditions.values_at(:page, :per_page))]
+    Hash[[:page, :per_page].zip(conditions.dup.values_at(:page, :per_page))]
   end
   
   def order(conditions)
-    conditions[:order]
+    conditions.dup[:order]
   end
 end
