@@ -11,7 +11,7 @@ module ParamsHelper
   def news_locals(conditions)
     {
       :articles => Article.where(where(conditions)).order(order(conditions)).paginate(paginate(conditions)),
-      :page => paginate.page,
+      :page => paginate(conditions)[:page],
       :next_page => !Article.where(where(conditions)).order(order(conditions)).paginate(paginate(conditions).merge(:page => paginate(conditions)[:page]+1)).empty?,
       :previous_page => paginate.page != 1 && !Article.where(where(conditions)).order(order(conditions)).paginate(paginate(conditions).merge(:page => paginate(conditions)[:page]-1)).empty?,
       :html_page_title => "The News", 
