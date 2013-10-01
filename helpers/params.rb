@@ -9,11 +9,12 @@ module ParamsHelper
   end
 
   def news_locals(conditions)
+    conditions = Hashie::Mash[conditions]
     {
-      :articles => Articles.paginate(conditions),
+      :articles => Article.paginate(conditions),
       :page => conditions.page,
-      :next => !Article.paginate(conditions.merge(:page => conditions[:page]+1)).empty?,
-      :previous => conditions[:page] != 1 && !Article.paginate(conditions.merge(:page => conditions[:page]-1)).empty?,
+      :next_page => !Article.paginate(conditions.merge(:page => conditions[:page]+1)).empty?,
+      :previous_page => conditions[:page] != 1 && !Article.paginate(conditions.merge(:page => conditions[:page]-1)).empty?,
       :html_page_title => "The News", 
       :page_title => "The News"
     }
