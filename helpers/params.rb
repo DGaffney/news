@@ -11,11 +11,11 @@ module ParamsHelper
   def news_locals(conditions)
     conditions = Hashie::Mash[conditions]
     where = conditions.dup
+    paginate = conditions.dup
     where.delete(:page)
     where.delete(:per_page)
     where.delete(:order)
     order = conditions.order
-    paginate = conditions.dup
     paginate.delete(:order)
     {
       :articles => Article.where(where).order(order).paginate(paginate),
