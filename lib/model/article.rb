@@ -12,4 +12,12 @@ class Article
   def raw
     self.send(self.publisher_code)
   end
+  
+  def self.earliest_time_range
+    Article.order(:created_at).first.created_at.strftime("%Y-%m-%d")
+  end
+  
+  def self.latest_time_range
+    Article.order(:created_at).last.created_at.strftime("%Y-%m-%d")
+  end
 end
