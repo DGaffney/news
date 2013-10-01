@@ -23,7 +23,6 @@
       endDate: '<%= Article.latest_time_range %>'
     },
     function(start, end) {
-      alert('A date range was chosen: ' + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD'));
     }
   );
   $('.slider').slider({
@@ -31,6 +30,6 @@
     max: 100,
     step: 1
   }).on('slideStop', function(ev){
-    ev
+    $('#'+ev.target.id).val(ev.value)
   });
 </script>
