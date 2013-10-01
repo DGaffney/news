@@ -10,11 +10,18 @@ module ParamsHelper
 
   def news_locals(conditions)
     conditions = Hashie::Mash[conditions]
+    where = conditions.dup
+    where.delete(:page)
+    where.delete(:per_page)
+    where.delete(:order)
+    order = conditions.order
+    paginate = conditions.dup
+    paginate.delete(:order)
     {
-      :articles => Article.paginate(conditions),
-      :page => conditions.page,
-      :next_page => !Article.paginate(conditions.merge(:page => conditions[:page]+1)).empty?,
-      :previous_page => conditions[:page] != 1 && !Article.paginate(conditions.merge(:page => conditions[:page]-1)).empty?,
+      :articles => Article.where(where).order(order).paginate(paginate),
+      :page => paginate.page,
+      :next_page => !Article.where(where).order(order).paginate(paginate.merge(:page => paginate.page+1)).empty?,
+      :previous_page => paginate.page != 1 && !Article.paginate(conditions.merge(:page => paginate.page-1)).empty?,
       :html_page_title => "The News", 
       :page_title => "The News"
     }
