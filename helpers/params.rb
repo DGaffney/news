@@ -21,7 +21,7 @@ module ParamsHelper
       :articles => Article.where(where).order(order).paginate(paginate),
       :page => paginate.page,
       :next_page => !Article.where(where).order(order).paginate(paginate.merge(:page => paginate.page+1)).empty?,
-      :previous_page => paginate.page != 1 && !Article.paginate(conditions.merge(:page => paginate.page-1)).empty?,
+      :previous_page => paginate.page != 1 && !Article.paginate(paginate.merge(:page => paginate.page-1)).empty?,
       :html_page_title => "The News", 
       :page_title => "The News"
     }
