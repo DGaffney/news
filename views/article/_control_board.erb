@@ -1,0 +1,22 @@
+<div class="row-fluid">
+  <div class="span4">
+    <h4>Time</h4>
+    <input type="text" class="slider" id="time-slider" style="display:none">
+  </div>
+  <div class="span4">
+    <h4>Personal Relevance</h4>
+    <input type="text" class="slider" id="personal-relevance-slider" style="display:none">
+  </div>
+  <div class="span4">
+    <h4>Objective Importance</h4>
+    <input type="text" class="slider" id="objective-importance-slider" style="display:none">
+  </div>
+</div>
+<script type="text/javascript">
+    $('.slider').slider({
+        min: 0,
+        max: 100,
+        step: 1,
+        value: 50
+    });
+</script>
