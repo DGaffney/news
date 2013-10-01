@@ -7,13 +7,13 @@
     <div class="span4">
       <h4>Time</h4>
       <input type="text" name="time" id="time" value="<%= Article.earliest_time_range %> - <%= Article.latest_time_range %>"/>
+      <button type="submit" class="btn">Submit</button>
     </div>
     <div class="span4">
       <h4>Objective Importance</h4>
       <input type="text" class="slider" id="objective-importance-slider" style="display:none">
     </div>
   </div>
-  <button type="submit" class="btn">Submit</button>
 </form>
 <script type="text/javascript">
   $('#time').daterangepicker(
