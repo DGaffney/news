@@ -19,7 +19,7 @@ gem "rack-ssl-enforcer", "~> 0.2.5"
 
 #user importing
 gem "koala"
-gem "twitter"
+gem "twitter", '4.8.1'
 gem "gmail_xoauth"
 gem "mail"
 gem "oauth2"

@@ -233,4 +233,4 @@ DEPENDENCIES
   sinatra-flash (~> 0.3.0)
   thin
   tux
-  twitter
+  twitter (= 4.8.1)
