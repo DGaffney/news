@@ -9,7 +9,11 @@ require 'bcrypt'
 require 'sinatra/flash'
 MongoMapper.connection = Mongo::MongoClient.new("localhost", 27017, :pool_size => 25, :pool_timeout => 60)
 MongoMapper.database = "news"
+class Provider
+end
 
+class Provider::Twitter
+end
 Dir[File.dirname(__FILE__) + '/extensions/*.rb'].each {|file| require file }
 Dir[File.dirname(__FILE__) + '/helpers/*.rb'].each {|file| require file }
 Dir[File.dirname(__FILE__) + '/handlers/*.rb'].each {|file| require file }
