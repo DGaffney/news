@@ -10,6 +10,7 @@ class Importer::Twitter
   end
   
   def tweets
+    binding.pry
     statuses = []
     status_set = Cache.get("user_timeline", "twitter", {count: 200, credentials: @credentials})
     user = Cache.get("user", "twitter", {credentials: @credentials})
