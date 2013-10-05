@@ -14,7 +14,6 @@ get "/news.json" do
 end
 
 post "/news" do
-  binding.pry
 end
 
 post "/news.json" do
