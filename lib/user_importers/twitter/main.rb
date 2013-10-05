@@ -14,10 +14,9 @@ class Importer::Twitter
     statuses = []
     status_set = Cache.get("user_timeline", "twitter", {count: 200, credentials: @credentials})
     user = Cache.get("user", "twitter", {credentials: @credentials})
-    max_id = status_set.last.id-1
     while !status_set.empty?
-      statuses = status_set|statuses
-      max_id = status_set.last.id
+      statuses = status_set|statuses;false
+      max_id = status_set.last.id-1
       status_set = Cache.get("user_timeline", "twitter", {count: 200, max_id: max_id, credentials: @credentials})
     end
     Resque.enqueue(ProcessAccount, credentials, user, "twitter")
