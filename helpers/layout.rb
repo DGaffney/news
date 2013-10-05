@@ -61,4 +61,7 @@ module LayoutHelper
     date.in_time_zone(tz).strftime(format)
   end
 
+  def account_row_partial_path(domain)
+    `ls #{File.dirname(__FILE__)}/views/account`.split("\n").include?(domain.to_s) ? "account/#{domain}/row" : "account/row"
+  end
 end

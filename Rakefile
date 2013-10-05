@@ -10,8 +10,8 @@ task :seeds do
   Setting.google_api_key = "AIzaSyAMRl3Y7p9M-tFarmnXnyVQwnnYfqLJIg8"
   Setting.google_client_id = "646738893306-b5lcuba1qm847tju53d52mt3fhiqgd9v.apps.googleusercontent.com"
   Setting.google_client_secret = "RsCXPfDBOeKcln9N6_C6RzRc"
-  Setting.twitter_consumer_key = "13731562-GEULCwcI0kISER1y7kx4z5DCTvYuhFLtInn2ROOLG"
-  Setting.twitter_consumer_secret = "H88Fy065246C6XdydrwFf2unHHIVAGjPFxoZdJx3c"
+  Setting.twitter_consumer_key = "kWDbUyUwIwyYyYdVCShd9Q"
+  Setting.twitter_consumer_secret = "XswMmYIF1fu2nXnWhgHXq9STYlLKelGDvnWSJ76uzI"
   Setting.facebook_app_id = "558094644251461"
   Setting.facebook_app_secret = "d23dfa36da5553138fa6d50f7a1b1288"
 end

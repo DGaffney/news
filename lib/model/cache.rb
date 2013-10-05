@@ -1,16 +1,18 @@
 class Cache
   extend ScorerRequests
   extend CrawlerRequests
+  extend TwitterRequests
   include MongoMapper::Document
   key :url, String
-  key :content, String
+  key :content
   key :resource, String
-  def self.get(url, resource)
-    if cached = Cache.first(:url => url, :resource => resource)
+  key :opts, Hash
+  def self.get(url, resource, opts={})
+    if cached = Cache.first(:url => url, :resource => resource, :opts => opts)
       return cached.content
     else
-      cached = Cache.new(:url => url, :resource => resource)
-      cached.content = self.send("request_#{resource}", url)
+      cached = Cache.new(:url => url, :resource => resource, :opts => opts)
+      cached.content = self.send("request_#{resource}", url, opts)
       cached.save!
       return cached.content
     end

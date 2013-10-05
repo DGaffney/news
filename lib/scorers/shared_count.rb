@@ -1,5 +1,5 @@
 class SharedCountScorer < Scorer
   def self.score(url)
-    return Cache.get(url, "shared_count")
+    return JSON.parse(Cache.get(url, "shared_count"))
   end
 end

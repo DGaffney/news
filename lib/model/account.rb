@@ -17,5 +17,18 @@ class Account
     ego.account_ids << account.id
     account.save
     ego.save
+    account.collect_data
+  end
+  
+  def collect_data
+    case self.domain
+    when "twitter"
+      Resque.enqueue(TwitterCrawlTweets, self.credentials)
+      Resque.enqueue(TwitterCrawlGraph, self.credentials, "friend")
+      Resque.enqueue(TwitterCrawlGraph, self.credentials, "follower")
+      # TwitterCrawlTweets.perform(self.credentials)
+      # TwitterCrawlGraph.perform(self.credentials, "friend")
+      # TwitterCrawlGraph.perform(self.credentials, "follower")
+    end
   end
 end
