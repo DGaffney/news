@@ -5,6 +5,7 @@ class Account
   key :alias, String
   key :print_alias, String
   key :credentials, Hash
+  key :data
   belongs_to :ego
 
   def self.create_account_for(domain, credentials, ego_id)
