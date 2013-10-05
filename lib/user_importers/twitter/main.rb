@@ -7,7 +7,6 @@ class Importer::Twitter
   end
   
   def graph(direction)
-    binding.pry
   end
   
   def tweets
