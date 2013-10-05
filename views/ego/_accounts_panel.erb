@@ -1,0 +1,37 @@
+<h2>Your Accounts</h2>
+<h3>Twitter</h3>
+<%= partial "/account/index", :locals => {:accounts => current_ego.accounts_for("twitter")} %>
+<p><a href="/login/twitter">Add a Twitter Account</a></p>
+<h3>Facebook</h3>
+<%= partial "/account/index", :locals => {:accounts => current_ego.accounts_for("facebook")} %>
+<p><a href="/login/facebook">Add a Facebook Account</a></p>
+<h3>GMail</h3>
+<%= partial "/account/index", :locals => {:accounts => current_ego.accounts_for("gmail")} %>
+<p><a href="/login/gmail">Add a GMail Account</a></p>
+<!--<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.2/jquery-ui.min.js"></script>
+<script type="text/javascript" src="https://ajax.googleapis.com/jsapi"></script>
+<script type="text/javascript" src="https://www.accountchooser.com/client.js"></script>
+<script type="text/javascript">
+  function load() {
+    google.load("identitytoolkit", "2", {packages: ["ac"], callback: callback});
+  }
+  function callback() {
+    window.google.identitytoolkit.setConfig({
+        developerKey: "<%= Setting.google_api_key %>",
+        callbackUrl: "https://<%= Setting.host %>/callback/gmail", // must be a full URL
+        userStatusUrl: "/userStatus", // these can just be partial paths
+        loginUrl: "/login",
+        signupUrl: "/signup",
+        homeUrl: "/home",
+        logoutUrl: "/logout",
+        realm: "",  // optional
+        language: "en",
+        idps: ["Gmail", "AOL", "Hotmail", "Yahoo"],
+        tryFederatedFirst: true,
+        useContextParam: true
+    });
+    window.google.identitytoolkit.init();
+  }
+</script>
+<script type="text/javascript" src="https://apis.google.com/js/client.js?onload=load"></script>-->

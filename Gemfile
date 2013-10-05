@@ -13,3 +13,17 @@ gem "sinatra"
 gem "tux"
 gem "oauth"
 gem "pry"
+gem 'bcrypt-ruby', '~> 3.0.1'
+gem "sinatra-flash", "~> 0.3.0"
+gem "rack-ssl-enforcer", "~> 0.2.5"
+
+#user importing
+gem "koala"
+gem "twitter"
+gem "gmail_xoauth"
+gem "mail"
+gem "oauth2"
+
+#servers
+gem "passenger"
+gem "thin"

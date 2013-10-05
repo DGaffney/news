@@ -45,13 +45,13 @@ class Importer::GMail
     
   end
 end
-credentials = Account.all.last.credentials
-gz = Importer::GMail.new(credentials)
-@gmail = gz.gmail
-message_id = 100
-email = @gmail.get('https://www.googleapis.com/userinfo/email?alt=json').parsed["data"]["email"]
-imap = Net::IMAP.new('imap.gmail.com', 993, usessl = true, certs = nil, verify = false)
-imap.authenticate('XOAUTH2', email, @gmail.token)
-imap.select('INBOX')
-msg = imap.fetch(message_id,'RFC822')[0].attr['RFC822']
-mail = Mail.read_from_string msg
+# credentials = Account.all.last.credentials
+# gz = Importer::GMail.new(credentials)
+# @gmail = gz.gmail
+# message_id = 100
+# email = @gmail.get('https://www.googleapis.com/userinfo/email?alt=json').parsed["data"]["email"]
+# imap = Net::IMAP.new('imap.gmail.com', 993, usessl = true, certs = nil, verify = false)
+# imap.authenticate('XOAUTH2', email, @gmail.token)
+# imap.select('INBOX')
+# msg = imap.fetch(message_id,'RFC822')[0].attr['RFC822']
+# mail = Mail.read_from_string msg

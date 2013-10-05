@@ -1,0 +1,21 @@
+<p>Enter the username and password!</p>
+<form action="/<%= action %>" method="post">
+  <% if action == "signup" %>
+    <div>
+      <label for="alias">Screen Name:</label>
+      <input type="text" name="alias">
+    </div>
+  <% end %>
+  <div>
+    <label for="password">Password:</label>
+    <input type="password" name="password">
+  </div>
+  <div>
+    <label for="checkpassword">Confirm:</label>
+    <input type="password" name="check_password">
+  </div>
+  <div>
+    <input type="submit" value="Sign Up">
+    <input type="reset" value="Clear">
+  </div>
+</form>

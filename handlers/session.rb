@@ -3,7 +3,7 @@ get "/signup" do
 end
 
 post "/signup" do
-  if Ego.first(:screen_name => params[:screen_name])
+  if Ego.first(:alias => params[:alias].downcase)
     flash[:error] = "Sorry, but someone else already has this account. Have you forgot your password?"
     redirect "/signup" 
   end
@@ -14,7 +14,7 @@ post "/signup" do
   password_salt = BCrypt::Engine.generate_salt
   password_hash = BCrypt::Engine.hash_secret(params[:password], password_salt)
 
-  ego = Ego.new(:screen_name => params[:screen_name], :salt => password_salt, :hash => password_hash)
+  ego = Ego.new(:screen_name => params[:screen_name], :alias => params[:alias].downcase, :salt => password_salt, :hash => password_hash)
   ego.save!
   session[:ego_id] = ego.id.to_s
   redirect "/"
@@ -25,7 +25,7 @@ get "/login" do
 end
  
 post "/login" do
-  ego = Ego.first(:screen_name => params[:screen_name])
+  ego = Ego.first(:alias => params[:alias].downcase)
   if ego
     if ego.hash == BCrypt::Engine.hash_secret(params[:password], ego.salt)
       session[:ego_id] = ego.id.to_s

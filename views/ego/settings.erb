@@ -1,0 +1,6 @@
+<% if logged_in? %>
+  <%= partial "/ego/accounts_panel" %>
+<% else %>
+  <%= partial "/misc/join" %>
+<% end %>
+<a href="/change_password">Change Password</a>

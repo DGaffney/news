@@ -1,0 +1,25 @@
+
+
+awfawefawef
+<%= @model.to_s %>: <%= @model.count %> Total, <%= @objects.length %> listed now.
+<table class="table table-striped">
+  <% @objects.each do |object| %>
+    <tr>
+      <% @keys.each do |key| %>
+        <% if object.is_associative?(key) %>
+          <% if object.attributes[key].class == Array %>
+            <td>
+              <% object.attributes[key].each do |value| %>
+                <a href="<%= object.associative_url_path_admin(key, value) %>">Object</a>
+              <% end %>
+            </td>
+          <% else %>
+            <a href="<%= object.associative_url_path_admin(key, value) %>">Object</a>
+          <% end %>
+        <% else %>
+          <td><%= object.attributes[key] %></td>
+        <% end %>
+      <% end %>
+    </tr>
+  <% end %>
+</table>

@@ -1,21 +1,8 @@
-get "/" do
-  redirect "/news"
-end
-get "/.json" do
-  redirect "/news.json"
+error do
+  @error = request.env['sinatra_error']
+  erb :"errors/500", :locals => @locals
 end
 
-get "/news" do
-  erb :index, :locals => @locals
-end
-
-get "/news.json" do
-  @locals.to_json
-end
-
-post "/news" do
-end
-
-post "/news.json" do
-  
+not_found do
+  erb :"errors/404", :locals => @locals
 end

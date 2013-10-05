@@ -1,0 +1,8 @@
+<% context ||= "ego_panel" %>
+<% if accounts.empty? %>
+  <p><b>None.</b></p>
+<% else %>
+  <% accounts.each do |account| %>
+    <%= partial account_row_partial_path(account.domain), :locals => {:context => context, :account => account} %>
+  <% end%>
+<% end %>

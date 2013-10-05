@@ -1,0 +1,5 @@
+<% if logged_in? %>
+  <a href="/logout">Log Out</a> | <a href="/settings">Settings</a>
+<% else %>
+  <a href="/login">Log In</a> | <a href="/signup">Sign Up</a>
+<% end %>
