@@ -7,6 +7,8 @@ module NewYorkTimesArticleProcessor
     a.content = article.abstract
     a.publisher_code = "new_york_times"
     a.new_york_times = NewYorkTimesArticle.new_from_raw(article)
+    a.published_at = a.new_york_times.published_date
+    TopicUpdater.perform_async(a.new_york_times.attributes, "new_york_times")
     a.save!
   end
   
@@ -33,5 +35,9 @@ module NewYorkTimesArticleProcessor
       author.save!
       author
     end
+  end
+  
+  def generate_topics_new_york_times
+    
   end
 end

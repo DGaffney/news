@@ -6,7 +6,6 @@ gem 'resque-web', require: 'resque_web'
 gem 'bitly', '0.9.0'
 gem 'rake'
 gem 'bson_ext'
-gem 'rest-client'
 gem 'json'
 gem 'hashie'
 gem "sinatra"
@@ -24,6 +23,8 @@ gem "twitter", '4.8.1'
 gem "gmail_xoauth"
 gem "mail"
 gem "oauth2"
+gem "nokogiri"
+gem "rest-client"
 
 #servers
 gem "passenger"
