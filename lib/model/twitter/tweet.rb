@@ -57,6 +57,8 @@ class Provider::Twitter::Tweet
     obj.favorited                 = tweet["favorited"]
     obj.retweeted                 = tweet["retweeted"]
     obj.possibly_sensitive        = tweet["possibly_sensitive"]
+    obj.account_id                = tweet.account_id
+    obj.user_id                   = tweet["user"]["id"]
     if tweet["entities"]
       tweet["entities"].each_pair do |entity_type, entities|
         if entity_type == "media"
