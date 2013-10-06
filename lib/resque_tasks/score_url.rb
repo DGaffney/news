@@ -1,6 +1,5 @@
 class ScoreURL
-  @queue = :main
-
+  include Sidekiq::Worker
   def self.perform(url)
     SharedCountScorer.score(url)
     BitlyScorer.score(url)

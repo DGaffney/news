@@ -1,7 +1,6 @@
 class ProcessArticle
   extend NewYorkTimesArticleProcessor
-  @queue = :main
-
+  include Sidekiq::Worker
   def self.perform(article, source)
     self.send("process_#{source}", Hashie::Mash[article])
   end

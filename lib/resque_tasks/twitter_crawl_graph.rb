@@ -1,6 +1,5 @@
 class TwitterCrawlGraph
-  @queue = :main
-
+  include Sidekiq::Worker
   def self.perform(credentials, direction)
     importer = Importer::Twitter.new(credentials)
     importer.graph(direction)

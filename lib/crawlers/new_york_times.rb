@@ -9,8 +9,10 @@ class NewYorkTimes < Crawler
       articles.each do |article|
         print "."
         # next if finished
-        Resque.enqueue(ScoreURL, article.url)
-        Resque.enqueue(ProcessArticle, article, "new_york_times")
+        # Resque.enqueue(ScoreURL)
+        # Resque.enqueue(ProcessArticle, article, "new_york_times")
+        ScoreURL.perform_async(article.url)
+        ProcessArticle.perform_async(article, "new_york_times")
         # finished = true if Time.parse(article.updated_date) < newest-periodicity
       end
       offset += 20
