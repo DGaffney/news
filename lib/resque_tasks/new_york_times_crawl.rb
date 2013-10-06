@@ -1,6 +1,6 @@
 class NewYorkTimesCrawl
   include Sidekiq::Worker
-  def self.perform
+  def perform
     NewYorkTimes.crawl
   end
 end
