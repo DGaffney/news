@@ -14,4 +14,9 @@ task :seeds do
   Setting.twitter_consumer_secret = "XswMmYIF1fu2nXnWhgHXq9STYlLKelGDvnWSJ76uzI"
   Setting.facebook_app_id = "558094644251461"
   Setting.facebook_app_secret = "d23dfa36da5553138fa6d50f7a1b1288"
+  Cache.ensure_index([[:resource, 1], [:url, 1]])
+  Cache.ensure_index(:resource)
+  Cache.ensure_index([[:resource, 1], [:_rand, 1]])
+  Article.ensure_index(:url)
+  Score.ensure_index([[:article_id, 1], [:provenance, 1], [:value, 1]])
 end

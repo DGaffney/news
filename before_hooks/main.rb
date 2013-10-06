@@ -3,6 +3,7 @@ before do
 end
 
 before "/news*" do
+  binding.pry
   conditions = pagination_conditions(params)
   @locals = news_locals(conditions)
 end
