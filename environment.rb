@@ -17,6 +17,7 @@ end
 class Provider::Twitter
 end
 Dir[File.dirname(__FILE__) + '/extensions/*.rb'].each {|file| require file }
+Dir[File.dirname(__FILE__) + '/plugins/*.rb'].each {|file| require file }
 Dir[File.dirname(__FILE__) + '/helpers/*.rb'].each {|file| require file }
 Dir[File.dirname(__FILE__) + '/handlers/*.rb'].each {|file| require file }
 Dir[File.dirname(__FILE__) + '/before_hooks/*.rb'].each {|file| require file }
