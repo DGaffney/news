@@ -1,6 +1,6 @@
 class SharedCountScorer < Scorer
   def self.store_raw(url)
-    return JSON.parse(Cache.get(url, "shared_count"))
+    return Cache.get(url, "shared_count")
   end
   
   def self.percentile(url)

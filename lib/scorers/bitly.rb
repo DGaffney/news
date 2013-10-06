@@ -1,7 +1,7 @@
 require 'bitly'
 class BitlyScorer < Scorer
   def self.store_raw(url)
-    return JSON.parse(Cache.get(url, "bitly"))
+    return Cache.get(url, "bitly")
   end
   
   def self.percentile(url)
