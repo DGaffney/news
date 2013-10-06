@@ -2,6 +2,6 @@ require 'nokogiri'
 class ProcessTweet
   include Sidekiq::Worker  
   def perform(url, account_id, tweet)
-    RestClient.get(url)
+    Nokogiri.parse(RestClient.get(url))
   end
 end
