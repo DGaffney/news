@@ -18,5 +18,7 @@ task :seeds do
   Cache.ensure_index(:resource)
   Cache.ensure_index([[:resource, 1], [:_rand, 1]])
   Article.ensure_index(:url)
+  Article.ensure_index(:created_at)
   Score.ensure_index([[:article_id, 1], [:provenance, 1], [:value, 1]])
+  Score.ensure_index([[:article_id, 1], [:ego_id, 1], [:value, -1]])
 end

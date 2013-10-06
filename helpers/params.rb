@@ -30,4 +30,5 @@ module ParamsHelper
   def order(conditions)
     conditions.dup[:order]
   end
+
 end
