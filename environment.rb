@@ -7,6 +7,8 @@ require 'pry'
 require 'sinatra'
 require 'bcrypt'
 require 'sinatra/flash'
+require 'sidekiq'
+require 'sidekiq/web'
 MongoMapper.connection = Mongo::MongoClient.new("localhost", 27017, :pool_size => 25, :pool_timeout => 60)
 MongoMapper.database = "news"
 class Provider
