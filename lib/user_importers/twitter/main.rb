@@ -24,7 +24,7 @@ class Importer::Twitter
     end
   end
   
-  def self.process_account
-    
+  def process_account(user)
+    binding.pry
   end
 end
