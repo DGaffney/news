@@ -1,4 +1,4 @@
-class ScoreURL
+class RankURL
   include Sidekiq::Worker
   def perform(url)
     SharedCountScorer.score(url)
