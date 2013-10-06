@@ -4,7 +4,7 @@ class SharedCountScorer < Scorer
   end
   
   def self.percentile(url)
-    shared_count_data = JSON.Parse(Cache.first(resource: "shared_count", url: url).content)
+    shared_count_data = JSON.parse(Cache.first(resource: "shared_count", url: url).content)
     keys = shared_count_data.keys
     other_shared_count_scores = Cache.where(resource: "shared_count").limit(1000).order(:_rand).collect{|c| c.content rescue nil}.compact
     percentile_raw = {}
