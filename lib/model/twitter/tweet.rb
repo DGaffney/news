@@ -31,6 +31,7 @@ class Provider::Twitter::Tweet
   many :urls, :through => Provider::Twitter::Url, :class_name => "Provider::Twitter::Url"
   many :user_mentions, :through => Provider::Twitter::UserMention, :class_name => "Provider::Twitter::UserMention"
   many :media, :through => Provider::Twitter::Media, :class_name => "Provider::Twitter::Media"
+  key :account_id, ObjectId
   belongs_to :user
 
   def self.example
