@@ -2,6 +2,7 @@ class Cache
   extend ScorerRequests
   extend CrawlerRequests
   extend TwitterRequests
+  
   include MongoMapper::Document
   key :url, String
   key :content
@@ -12,7 +13,7 @@ class Cache
       return cached.content
     else
       cached = Cache.new(:url => url, :resource => resource, :opts => opts)
-      cached.content = self.send("request_#{resource}", url, opts)
+      cached.content = self.send("request_#{resource}", url)
       cached.save!
       return cached.content
     end
