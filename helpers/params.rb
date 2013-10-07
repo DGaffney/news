@@ -9,8 +9,10 @@ module ParamsHelper
   end
 
   def news_locals(conditions)
-    binding.pry
-    article_ids = Score.a_priori_limit_offset(time_range(params)).paginate(paginate(conditions)).collect(&:article_id)
+    params.start_range ||= params.time.nil? ? Time.parse(Article.earliest_time_range) : Time.parse(params[:time].split(" - ").first)
+    params.end_range ||= params.time.nil? ? Time.parse(Article.latest_time_range) : Time.parse(params[:time].split(" - ").last)
+    article_ids = Score.a_priori_limit_offset(params).paginate(paginate(conditions)).collect(&:article_id)
+    
     articles = Hash[Article.where(:id => article_ids).collect{|a| [a.id, a]}]
     {
       :articles => article_ids.collect{|article_id| articles[article_id]},
@@ -18,7 +20,9 @@ module ParamsHelper
       :next_page => true,
       :previous_page => paginate(conditions)[:page] != 1,
       :html_page_title => "The News", 
-      :page_title => "The News"
+      :page_title => "The News",
+      :start_range => params.start_range,
+      :end_range => params.end_range
     }
   end
   

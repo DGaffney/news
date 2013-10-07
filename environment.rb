@@ -38,4 +38,4 @@ Dir[File.dirname(__FILE__) + '/lib/user_importers/**/*.rb'].each {|file| require
 set :erb, :layout => :'layouts/main'
 enable :sessions
 
-helpers LayoutHelper, ParamsHelper, LoginHelper, AuthenticateHelper, NewsParamsHelper
+helpers LayoutHelper, ParamsHelper, LoginHelper, AuthenticateHelper

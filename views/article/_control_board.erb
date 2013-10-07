@@ -6,7 +6,7 @@
     </div>
     <div class="span4">
       <h4>Time</h4>
-      <input type="text" name="time" id="time" value="<%= Article.earliest_time_range %> - <%= Article.latest_time_range %>"/>
+      <input type="text" name="time" id="time" value="<%= start_range %> - <%= end_range %>"/>
     </div>
     <div class="span4">
       <h4>Objective Importance</h4>
@@ -23,8 +23,8 @@
   $('#time').daterangepicker(
     { 
       format: 'YYYY-MM-DD',
-      startDate: '<%= Article.earliest_time_range %>',
-      endDate: '<%= Article.latest_time_range %>'
+      startDate: '<%= start_range %>',
+      endDate: '<%= end_range %>'
     },
     function(start, end) {
     }
@@ -33,7 +33,10 @@
     min: 0,
     max: 100,
     step: 1,
-    value: <%= params[:personal_relevance] || 50 %>
+    value: <%= params[:personal_relevance] || 50 %>,
+    <% if current_ego.nil? || current_ego.account_ids.empty? %>
+    diabled: true
+    <% end %>
   }).on('slideStop', function(ev){
     $('#'+ev.target.id).val(ev.value)
   });
