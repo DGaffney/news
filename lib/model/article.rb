@@ -16,10 +16,10 @@ class Article
   end
   
   def self.earliest_time_range
-    Article.order(:published_at).first.created_at.strftime("%Y-%m-%d")
+    Article.order(:published_at).first.published_at.strftime("%Y-%m-%d")
   end
   
   def self.latest_time_range
-    Article.order(:published_at).last.created_at.strftime("%Y-%m-%d")
+    Article.order(:published_at).last.published_at.strftime("%Y-%m-%d")
   end
 end
