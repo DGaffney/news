@@ -14,6 +14,7 @@ get "/news.json" do
 end
 
 post "/news" do
+  erb :index, :locals => @locals
 end
 
 post "/news.json" do
