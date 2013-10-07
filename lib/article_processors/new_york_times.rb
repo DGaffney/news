@@ -36,8 +36,10 @@ module NewYorkTimesArticleProcessor
       author
     end
   end
+
+  def update_topics_new_york_times(article)
+  end
   
-  def generate_topics_new_york_times
-    
+  def generate_topics_new_york_times(article)
   end
 end
