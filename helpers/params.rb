@@ -9,6 +9,7 @@ module ParamsHelper
   end
 
   def news_locals(conditions)
+    binding.pry
     article_ids = Score.a_priori_limit_offset(time_range(params)).paginate(paginate(conditions)).collect(&:article_id)
     articles = Hash[Article.where(:id => article_ids).collect{|a| [a.id, a]}]
     {
