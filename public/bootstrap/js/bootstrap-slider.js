@@ -70,7 +70,6 @@
 		this.max = this.element.data('slider-max')||options.max;
 		this.step = this.element.data('slider-step')||options.step;
 		this.value = this.element.data('slider-value')||options.value;
-    this.disabled = this.element.data('slider-value')||options.disabled;
 		if (this.value[1]) {
 			this.range = true;
 		}
@@ -152,14 +151,7 @@
 
 		over: false,
 		inDrag: false,
-		disabled: false,
-		enable: function(){
-        this.disabled = false;
-    },
-
-    disable: function(){
-        this.disabled = true;
-    },
+		
 		showTooltip: function(){
 			this.tooltip.addClass('in');
 			//var left = Math.round(this.percent*this.width);
@@ -200,9 +192,7 @@
 		},
 
 		mousedown: function(ev) {
-      if (this.disabled){
-          return false;
-      }
+
 			// Touch: Get the original event:
 			if (this.touchCapable && ev.type === 'touchstart') {
 				ev = ev.originalEvent;
@@ -250,9 +240,7 @@
 		},
 
 		mousemove: function(ev) {
-			if (this.disabled){
-          return false;
-      }
+			
 			// Touch: Get the original event:
 			if (this.touchCapable && ev.type === 'touchmove') {
 				ev = ev.originalEvent;
@@ -282,9 +270,6 @@
 		},
 
 		mouseup: function(ev) {
-		  if (this.disabled){
-          return false;
-      }
 			if (this.touchCapable) {
 				// Touch: Bind touch events:
 				$(document).off({
@@ -401,3 +386,25 @@
 	$.fn.slider.Constructor = Slider;
 
 }( window.jQuery );
+
+$.fn.slider.Constructor.prototype.disable = function () {
+this.picker.off();
+}
+$.fn.slider.Constructor.prototype.enable = function () {
+     	if (this.touchCapable) {
+			// Touch: Bind touch events:
+			this.picker.on({
+				touchstart: $.proxy(this.mousedown, this)
+			});
+		} else {
+			this.picker.on({
+				mousedown: $.proxy(this.mousedown, this)
+			});
+		}
+}
+
+$('#slide').slider();
+
+
+$('#enable').click(function(){$('#slide').slider('enable')});
+$('#disable').click(function(){$('#slide').slider('disable')});

@@ -34,12 +34,10 @@
     max: 100,
     step: 1,
     value: <%= params[:personal_relevance] || 50 %>,
-    <% if current_ego.nil? || current_ego.account_ids.empty? %>
-    diabled: true
-    <% end %>
   }).on('slideStop', function(ev){
     $('#'+ev.target.id).val(ev.value)
   });
+  <% if current_ego.nil? || current_ego.account_ids.empty? %>$('#personal-relevance-slider').slider('disable')<% end %>
   $('#objective-importance-slider').slider({
     min: 0,
     max: 100,
