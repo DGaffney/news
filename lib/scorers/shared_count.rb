@@ -4,7 +4,8 @@ class SharedCountScorer < Scorer
   end
   
   def self.percentile(url)
-    shared_count_data = Cache.first(resource: "shared_count", url: url).content
+    shared_count_data = Cache.first(resource: "shared_count", url: url)
+    shared_count_data = shared_count_data.content
     keys = shared_count_data.keys
     other_shared_count_scores = Cache.where(resource: "shared_count").limit(1000).order(:_rand).collect{|c| c.content rescue nil}.compact
     percentile_raw = {}
@@ -28,8 +29,7 @@ class SharedCountScorer < Scorer
           percentiles[key+"_"+k.to_s] = percentile_raw[key+"_"+k.to_s].reverse_percentile(v) if percentile_raw[key+"_"+k.to_s]
         end
       else
-          puts key
-          percentiles[key] = percentile_raw[key].reverse_percentile(value) if percentile_raw[key]
+        percentiles[key] = percentile_raw[key].reverse_percentile(value) if percentile_raw[key]
       end
     end
     percentiles

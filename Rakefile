@@ -20,6 +20,8 @@ task :seeds do
   Article.ensure_index(:url)
   Article.ensure_index(:created_at)
   Article.ensure_index(:published_at)
+  Score.ensure_index([[:article_id, 1], [:provenance, 1]], :unique => true)
   Score.ensure_index([[:article_id, 1], [:provenance, 1], [:value, 1]])
+  Score.ensure_index([[:article_id, 1], [:provenance, 1], [:value, 1], [:article_created_at, 1]])
   Score.ensure_index([[:article_id, 1], [:ego_id, 1], [:value, -1]])
 end
