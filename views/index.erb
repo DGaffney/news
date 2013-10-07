@@ -1,4 +1,4 @@
-<%= partial "/article/control_board" %>
+<%= partial "/article/control_board", :locals => {:start_range => start_range, :end_range => end_range} %>
 <% articles[0..2].each_with_index do |article, i| %>
   <%= partial "/article/primary", :locals => {:article => article, :i => i} %>
 <% end %>
