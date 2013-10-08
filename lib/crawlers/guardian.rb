@@ -5,7 +5,7 @@ class Guardian < Crawler
     yesterday = Date.yesterday.strftime("%Y-%m-%d")
     guardian_reponse = self.day(yesterday)
     
-    while guardian_response.current_page <= guardian_response.pages
+    while guardian_response.status = "ok"
       articles = guardian_response.results
       
       articles.each do |article|
@@ -38,4 +38,5 @@ class Guardian < Crawler
 
     return Hashie::Mash[JSON.parse(RestClient.get(url))].response
   end
+  
 end
