@@ -33,7 +33,7 @@ Dir[File.dirname(__FILE__) + '/lib/model/embedded_documents/*.rb'].each {|file| 
 Dir[File.dirname(__FILE__) + '/lib/model/*.rb'].each {|file| require file }
 Dir[File.dirname(__FILE__) + '/lib/model/twitter/*.rb'].each {|file| require file }
 Dir[File.dirname(__FILE__) + '/lib/login/*.rb'].each {|file| require file }
-Dir[File.dirname(__FILE__) + '/lib/resque_tasks/*.rb'].each {|file| require file }
+Dir[File.dirname(__FILE__) + '/lib/sidekiq_tasks/*.rb'].each {|file| require file }
 Dir[File.dirname(__FILE__) + '/lib/user_importers/*.rb'].each {|file| require file }
 Dir[File.dirname(__FILE__) + '/lib/user_importers/**/*.rb'].each {|file| require file }
 
