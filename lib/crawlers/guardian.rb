@@ -3,37 +3,36 @@ class Guardian < Crawler
   def self.crawl
     @guardian_api_key = Setting.guardian_content_api_key
     yesterday = Date.yesterday.strftime("%Y-%m-%d")
-    guardian_reponse = self.day(yesterday)
+    guardian = self.for_date(yesterday)
     
-    while guardian_response.status = "ok"
-      articles = guardian_response.results
+    loop do
       
-      articles.each do |article|
+      guardian.results.each do |article|
         print "."
         ScoreURL.perform_async(article.webUrl)
         ProcessArticle.perform_async(article, "guardian")
       end
 
-      next_page = guardian_response.current_page + 1
-      guardian_reponse = self.day(yesterday, next_page)
+      guardian.current_page == guardian.pages ? break : next_page = guardian.current_page + 1
+      guardian = self.day(yesterday, next_page)
     end
 
   end
 
-  def self.day(date, page=1)
+  def self.for_date(date, page=1)
     @base_url = "http://content.guardianapis.com/search"
     
     url = [
       @base_url,
-      "?from-date=", date,
-      "&page=", page,
+      "?from-date=#{date}",
+      "&page=#{page}",
       "&page-size=50",
       "&show-fields=all",
       "&show-tags=all",
       "&show-factboxes=all",
       "&show-references=all",
       "&show-refinements=all",
-      "&api-key=", @guardian_api_key
+      "&api-key=#{@guardian_api_key}"
     ].join
 
     return Hashie::Mash[JSON.parse(RestClient.get(url))].response

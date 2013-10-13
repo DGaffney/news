@@ -1,23 +1,20 @@
 class NewYorkTimes < Crawler
   
-  def self.crawl(periodicity=60*60*24)
+  def self.crawl
     @newswire_api_key = Setting.nytimes_newswire_api_key
     offset = 0
-    articles = self.most_recent_linear(offset)
-    newest = Time.parse(articles.first.updated_date)
-    finished = false
-    while !finished
-      articles.each do |article|
+    nyt = self.most_recent_temporal
+    
+    loop do
+
+      nyt.results.each do |article|
         print "."
-        # next if finished
-        # Resque.enqueue(ScoreURL)
-        # Resque.enqueue(ProcessArticle, article, "new_york_times")
         ScoreURL.perform_async(article.url)
         ProcessArticle.perform_async(article, "new_york_times")
-        # finished = true if Time.parse(article.updated_date) < newest-periodicity
       end
-      offset += 20
-      articles = self.most_recent_linear(offset) if !finished
+
+      (offset + 20) >= nyt.num_results ? break : offset += 20
+      nyt = self.most_recent_temporal(offset) 
     end
   end
   
@@ -27,12 +24,12 @@ class NewYorkTimes < Crawler
 
   def self.most_recent_linear(offset=0)
     @base_url = "http://api.nytimes.com/svc/news/v3/content/all/all.json"
-    return Hashie::Mash[JSON.parse(RestClient.get(@base_url+"?api-key="+@newswire_api_key+"&offset=#{offset}"))].results
+    return Hashie::Mash[JSON.parse(RestClient.get(@base_url+"?api-key="+@newswire_api_key+"&offset=#{offset}"))]
   end
 
-  def self.most_recent_temporal(hrs="all")
-    @base_url = "http://api.nytimes.com/svc/news/v3/content/all/#{hrs}.json"
-    return Hashie::Mash[JSON.parse(RestClient.get(@base_url+"?api-key="+@newswire_api_key))].results
+  def self.most_recent_temporal(offset=0, hrs=24)
+    @base_url = "http://api.nytimes.com/svc/news/v3/content/all/all/#{hrs}.json"
+    return Hashie::Mash[JSON.parse(RestClient.get(@base_url+"?api-key="+@newswire_api_key+"&offset=#{offset}"))]
   end
 
   def self.specific_article_details(url)

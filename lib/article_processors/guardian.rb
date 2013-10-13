@@ -1,4 +1,5 @@
 module GuardianArticleProcessor
+  
   def process_guardian(article)
     a = Article.first_or_new(:url => article.url)
     a.title = article.webTitle
