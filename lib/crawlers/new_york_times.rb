@@ -1,4 +1,5 @@
 class NewYorkTimes < Crawler
+  
   def self.crawl(periodicity=60*60*24)
     @newswire_api_key = Setting.nytimes_newswire_api_key
     offset = 0
