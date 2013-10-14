@@ -22,7 +22,7 @@ class GuardianArticle
     obj.web_title = article.webTitle
     obj.web_url = article.webUrl
     obj.api_url = article.apiUrl
-    obj.last_modified = Time.parse(article.fields.last_modified) rescue nil
+    obj.last_modified = Time.parse(article.fields.lastModified) rescue nil
     obj.headline = article.fields.headline rescue nil
     obj.publication = article.fields.publication rescue nil
     obj.short_url = article.fields.shortUrl rescue nil

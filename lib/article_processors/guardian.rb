@@ -1,7 +1,7 @@
 module GuardianArticleProcessor
   
   def process_guardian(article)
-    a = Article.first_or_new(:url => article.url)
+    a = Article.first_or_new(:url => article.webUrl)
     a.title = article.webTitle
     a.publisher_code = "guardian"
     a.guardian = GuardianArticle.new_from_raw(article)
