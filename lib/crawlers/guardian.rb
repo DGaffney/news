@@ -13,8 +13,8 @@ class Guardian < Crawler
         ProcessArticle.perform_async(article, "guardian")
       end
 
-      guardian.current_page == guardian.pages ? break : next_page = guardian.current_page + 1
-      guardian = self.day(yesterday, next_page)
+      guardian.currentPage == guardian.pages ? break : next_page = guardian.currentPage + 1
+      guardian = self.for_date(yesterday, next_page)
     end
 
   end

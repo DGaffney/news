@@ -3,13 +3,16 @@ module GuardianArticleProcessor
   def process_guardian(article)
     a = Article.first_or_new(:url => article.url)
     a.title = article.webTitle
-    authors = extract_guardian_authors(article.fields.byline, a.id)
-    a.author_ids = authors.collect(&:id)
-    a.content = article.fields.standfirst
     a.publisher_code = "guardian"
     a.guardian = GuardianArticle.new_from_raw(article)
     a.published_at = a.guardian.web_publication_date
-    TopicUpdater.perform_async(a.guardian.attributes, "guardian")
+    a.content = article.fields.standfirst rescue nil
+
+    if article.fields.byline
+      authors = extract_guardian_authors(article.fields.byline, a.id)
+      a.author_ids = authors.collect(&:id)
+    end
+
     a.save!
   end
 
@@ -43,6 +46,4 @@ module GuardianArticleProcessor
   def update_topics_guardian(article)
   end
   
-  def generate_topics_guardian(article)
-  end
 end
