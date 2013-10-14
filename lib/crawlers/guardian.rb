@@ -16,7 +16,6 @@ class Guardian < Crawler
       guardian.currentPage == guardian.pages ? break : next_page = guardian.currentPage + 1
       guardian = self.for_date(yesterday, next_page)
     end
-
   end
 
   def self.for_date(date, page=1)

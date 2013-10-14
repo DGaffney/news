@@ -1,5 +1,6 @@
 class ScoreURL
   include Sidekiq::Worker
+  
   def perform(url)
     SharedCountScorer.store_raw(url)
     # BitlyScorer.store_raw(url)
