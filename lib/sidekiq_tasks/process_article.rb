@@ -7,4 +7,5 @@ class ProcessArticle
   def perform(article, provenance)
     self.send("process_#{provenance}", Hashie::Mash[article])
   end
+  
 end

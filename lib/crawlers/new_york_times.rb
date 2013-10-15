@@ -36,4 +36,5 @@ class NewYorkTimes < Crawler
     @base_url = "http://api.nytimes.com/svc/news/v3/content.json"
     return Hashie::Mash[JSON.parse(RestClient.get(@base_url+"?api-key=#{@newswire_api_key}&url="+url.gsub("/", "%2F")))].results
   end
+  
 end

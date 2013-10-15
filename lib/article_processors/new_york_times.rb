@@ -12,4 +12,5 @@ module NewYorkTimesArticleProcessor
     a.author_ids = authors.collect(&:id)
     a.save!
   end
+  
 end

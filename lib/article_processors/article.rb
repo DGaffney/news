@@ -29,4 +29,5 @@ module ArticleProcessor
 
   def update_topics(article, provenance)
   end
+  
 end

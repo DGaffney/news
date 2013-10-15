@@ -15,4 +15,5 @@ module GuardianArticleProcessor
     a.content = article.fields.standfirst rescue nil
     a.save!
   end
+  
 end
