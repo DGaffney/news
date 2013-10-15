@@ -1,4 +1,5 @@
 class ProcessArticle
+  include ArticleProcessor
   include NewYorkTimesArticleProcessor
   include GuardianArticleProcessor
   include Sidekiq::Worker
