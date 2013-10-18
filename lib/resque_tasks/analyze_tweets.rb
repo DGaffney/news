@@ -1,5 +1,5 @@
 class AnalyzeTweets
-  include Sidekiq::Worker  
+  include Sidekiq::Worker
   def perform(credentials)
     binding.pry
   end
