@@ -1,5 +1,4 @@
 load 'environment.rb'
-require 'resque/tasks' 
 
 desc "Set up core DB settings"
 task :seeds do

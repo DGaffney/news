@@ -4,10 +4,12 @@ class Cache
   extend TwitterRequests
 
   include MongoMapper::Document
+
   key :url, String
   key :content
   key :resource, String
   key :opts, Hash
+  
   def self.get(url, resource, opts={})
     if cached = Cache.first(:url => url, :resource => resource, :opts => opts)
       return cached.content

@@ -9,8 +9,10 @@ require 'bcrypt'
 require 'sinatra/flash'
 require 'sidekiq'
 require 'sidekiq/web'
-require 'guardian-content'
-MongoMapper.connection = Mongo::MongoClient.new("ec2-54-224-26-29.compute-1.amazonaws.com", 27017, :pool_size => 25, :pool_timeout => 60)
+
+# MongoMapper.connection = Mongo::MongoClient.new("ec2-54-224-26-29.compute-1.amazonaws.com", 27017, :pool_size => 25, :pool_timeout => 60)
+
+MongoMapper.connection = Mongo::MongoClient.new("localhost", 27017, :pool_size => 25, :pool_timeout => 60)
 MongoMapper.database = "news"
 
 class Provider
@@ -33,7 +35,7 @@ Dir[File.dirname(__FILE__) + '/lib/model/embedded_documents/*.rb'].each {|file| 
 Dir[File.dirname(__FILE__) + '/lib/model/*.rb'].each {|file| require file }
 Dir[File.dirname(__FILE__) + '/lib/model/twitter/*.rb'].each {|file| require file }
 Dir[File.dirname(__FILE__) + '/lib/login/*.rb'].each {|file| require file }
-Dir[File.dirname(__FILE__) + '/lib/resque_tasks/*.rb'].each {|file| require file }
+Dir[File.dirname(__FILE__) + '/lib/sidekiq_tasks/*.rb'].each {|file| require file }
 Dir[File.dirname(__FILE__) + '/lib/user_importers/*.rb'].each {|file| require file }
 Dir[File.dirname(__FILE__) + '/lib/user_importers/**/*.rb'].each {|file| require file }
 
