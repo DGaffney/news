@@ -2,7 +2,7 @@ class Guardian < Crawler
   
   def self.crawl
     @guardian_api_key = Setting.guardian_content_api_key
-    yesterday = Date.yesterday.strftime("%Y-%m-%d")
+    yesterday = (Time.now-24*60*60*7*30).strftime("%Y-%m-%d")
     guardian = self.for_date(yesterday)
     
     loop do

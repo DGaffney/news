@@ -7,6 +7,14 @@ class Importer::Twitter
   end
   
   def graph(direction)
+    account = Account.where(credentials: @credentials).first
+    cursor = -1
+    while cursor != 0
+      initial = Cache.get("#{direction}_ids", "twitter", {credentials: @credentials, cursor: cursor})
+      id_set = Provider::Twitter::Relationship.new_from_raw(initial, account.id, direction)
+      id_set.save
+      cursor = initial.next_cursor
+    end
   end
   
   def tweets
@@ -23,8 +31,9 @@ class Importer::Twitter
       ProcessTweet.perform_async(credentials, status, statuses.count, user)
     end
   end
-  
+
   def process_account(user)
-    binding.pry
+    account = Account.where(credentials: @credentials).first
+    Provider::Twitter::User.new_from_raw(user, account.id).save
   end
 end

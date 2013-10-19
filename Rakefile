@@ -27,4 +27,8 @@ task :seeds do
   Score.ensure_index([[:article_id, 1], [:provenance, 1], [:value, 1]])
   Score.ensure_index([[:article_id, 1], [:provenance, 1], [:value, 1], [:article_created_at, 1]])
   Score.ensure_index([[:article_id, 1], [:ego_id, 1], [:value, -1]])
+  
+  Provider::Twitter::User.ensure_index([[:account_id, 1], [:twitter_id, 1]], :unique => true)
+  Provider::Twitter::Tweet.ensure_index([[:account_id, 1], [:twitter_id, 1]], :unique => true)
+  Provider::Twitter::Relationship.ensure_index([[:account_id, 1], [:next_cursor, 1], [:direction, 1]], :unique => true)
 end

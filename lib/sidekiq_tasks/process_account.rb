@@ -3,6 +3,6 @@ class ProcessAccount
   def perform(credentials, user, domain)
     importer_class = Importer.class_eval(domain.classify)
     importer = importer_class.new(credentials)
-    importer.process_account(user)
+    importer.process_account(user, credentials)
   end
 end

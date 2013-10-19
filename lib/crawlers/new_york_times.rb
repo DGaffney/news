@@ -14,7 +14,7 @@ class NewYorkTimes < Crawler
       end
 
       (offset + 20) >= nyt.num_results ? break : offset += 20
-      nyt = self.most_recent_temporal(offset) 
+      nyt = self.most_recent_linear(offset) 
     end
   end
   

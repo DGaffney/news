@@ -67,17 +67,17 @@ class Provider::Twitter::User
   key :following, Boolean, :default => false, :required => true
   key :follow_request_sent, Boolean, :default => false, :required => true
   key :notifications, Boolean, :default => false, :required => true
-  key :account_snapshot_id, ObjectId
+  key :account_id, ObjectId
   many :tweets, :through => Provider::Twitter::Tweet, :class_name => "Provider::Twitter::Tweet"
-  belongs_to :account_snapshot
+  belongs_to :account
   
   def self.example
     {"created_at"=>"Sat Dec 01 11:01:18 +0000 2012", "id"=>274830526970474496, "id_str"=>"274830526970474496", "text"=>"Getting ready for the #kingsofcode hack battle in Amsterdam! Just got off the plane, running on 2hrs sleep, so will see how this goes!", "source"=>"<a href=\"http://twitter.com/download/iphone\" rel=\"nofollow\">Twitter for iPhone</a>", "truncated"=>false, "in_reply_to_status_id"=>nil, "in_reply_to_status_id_str"=>nil, "in_reply_to_user_id"=>nil, "in_reply_to_user_id_str"=>nil, "in_reply_to_screen_name"=>nil, "user"=>{"id"=>14447132, "id_str"=>"14447132", "name"=>"Aaron Parecki", "screen_name"=>"aaronpk", "location"=>"Portland, OR", "url"=>"http://aaronparecki.com/", "description"=>"CTO of @esri R&D Center, Portland. Creating my own reality.", "protected"=>false, "followers_count"=>1776, "friends_count"=>619, "listed_count"=>200, "created_at"=>"Sat Apr 19 22:38:15 +0000 2008", "favourites_count"=>1543, "utc_offset"=>-28800, "time_zone"=>"Pacific Time (US & Canada)", "geo_enabled"=>true, "verified"=>false, "statuses_count"=>4331, "lang"=>"en", "contributors_enabled"=>false, "is_translator"=>false, "profile_background_color"=>"7A9AAF", "profile_background_image_url"=>"http://a0.twimg.com/profile_background_images/185835062/4786064324_b7049fbec8_b.jpg", "profile_background_image_url_https"=>"https://si0.twimg.com/profile_background_images/185835062/4786064324_b7049fbec8_b.jpg", "profile_background_tile"=>true, "profile_image_url"=>"http://a0.twimg.com/profile_images/1767475493/aaronpk-glasses_normal.png", "profile_image_url_https"=>"https://si0.twimg.com/profile_images/1767475493/aaronpk-glasses_normal.png", "profile_link_color"=>"0000FF", "profile_sidebar_border_color"=>"87BC44", "profile_sidebar_fill_color"=>"94C8FF", "profile_text_color"=>"000000", "profile_use_background_image"=>true, "default_profile"=>false, "default_profile_image"=>false, "following"=>true, "follow_request_sent"=>false, "notifications"=>nil}, "geo"=>{"type"=>"Point", "coordinates"=>[52.37051453, 4.8930892]}, "coordinates"=>{"type"=>"Point", "coordinates"=>[4.8930892, 52.37051453]}, "place"=>{"id"=>"99cdab25eddd6bce", "url"=>"http://api.twitter.com/1/geo/id/99cdab25eddd6bce.json", "place_type"=>"city", "name"=>"Amsterdam", "full_name"=>"Amsterdam, North Holland", "country_code"=>"NL", "country"=>"The Netherlands", "bounding_box"=>{"type"=>"Polygon", "coordinates"=>[[[4.7289, 52.278227], [5.079207, 52.278227], [5.079207, 52.431229], [4.7289, 52.431229]]]}, "attributes"=>{}}, "contributors"=>nil, "retweet_count"=>0, "favorited"=>false, "retweeted"=>false}
   end
   
-  def self.new_from_raw(user, account_snapshot_id)
+  def self.new_from_raw(user, account_id)
     obj = self.new
-    obj.account_snapshot_id                = account_snapshot_id
+    obj.account_id                         = account_id
     obj.twitter_id                         = user["id"]
     obj.twitter_id_str                     = user["id_str"]
     obj.name                               = user["name"]
