@@ -10,7 +10,13 @@ class Provider::Twitter::Relationship
   belongs_to :account
   
   def self.example
-    {"ids"=>[1270746139, 27252380, 1650712873, 28357827, 11766632, 1318037712], "next_cursor"=>0, "next_cursor_str"=>"0", "previous_cursor"=>0, "previous_cursor_str"=>"0"}
+    {
+                      "ids" => [1270746139, 27252380, 1650712873, 28357827, 11766632, 1318037712], 
+              "next_cursor" =>  0, 
+          "next_cursor_str" => "0", 
+          "previous_cursor" =>  0, 
+      "previous_cursor_str" => "0"
+    }
   end
 
   def self.new_from_raw(ids, account_id, direction)
