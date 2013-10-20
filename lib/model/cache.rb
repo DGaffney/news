@@ -9,7 +9,8 @@ class Cache
   key :content
   key :resource, String
   key :opts, Hash
-  timestamps!
+  key :created_at, Time, :default => Time.now
+  key :updated_at, Time, :default => Time.now
 
   def self.get(url, resource, opts={}, last_updated_at = Time.now-1.day)
     cached = Cache.first(:url => url, :resource => resource, :opts => opts)
