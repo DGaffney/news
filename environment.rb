@@ -26,6 +26,7 @@ Dir[File.dirname(__FILE__) + '/plugins/*.rb'].each {|file| require file }
 Dir[File.dirname(__FILE__) + '/helpers/*.rb'].each {|file| require file }
 Dir[File.dirname(__FILE__) + '/handlers/*.rb'].each {|file| require file }
 Dir[File.dirname(__FILE__) + '/before_hooks/*.rb'].each {|file| require file }
+Dir[File.dirname(__FILE__) + '/lib/requests/*.rb'].each {|file| require file }
 Dir[File.dirname(__FILE__) + '/lib/*.rb'].each {|file| require file }
 Dir[File.dirname(__FILE__) + '/lib/article_processors/*.rb'].each {|file| require file }
 Dir[File.dirname(__FILE__) + '/lib/crawlers/*.rb'].each {|file| require file }
@@ -38,6 +39,7 @@ Dir[File.dirname(__FILE__) + '/lib/login/*.rb'].each {|file| require file }
 Dir[File.dirname(__FILE__) + '/lib/sidekiq_tasks/*.rb'].each {|file| require file }
 Dir[File.dirname(__FILE__) + '/lib/user_importers/*.rb'].each {|file| require file }
 Dir[File.dirname(__FILE__) + '/lib/user_importers/**/*.rb'].each {|file| require file }
+
 
 set :erb, :layout => :'layouts/main'
 enable :sessions

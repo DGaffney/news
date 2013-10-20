@@ -7,7 +7,7 @@ class SharedCountScorer < Scorer
     shared_count_data = Cache.first(resource: "shared_count", url: url)
     shared_count_data = shared_count_data.content
     keys = shared_count_data.keys
-    other_shared_count_scores = Cache.where(resource: "shared_count").limit(1000).order(:_rand).collect{|c| c.content rescue nil}.compact
+    other_shared_count_scores = Cache.fields(:content).where(resource: "shared_count").limit(1000).order(:_rand).collect{|c| c.content rescue nil}.compact
     percentile_raw = {}
     keys.each do |key|
       other_shared_count_scores.each do |other_shared_count_score|
