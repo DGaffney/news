@@ -5,7 +5,6 @@ class SharedCountScorer < Scorer
   
   def self.percentile(url)
     shared_count_data = Cache.get(url, "shared_count")
-    shared_count_data = shared_count_data.content
     keys = shared_count_data.keys
     other_shared_count_scores = Cache.fields(:content).where(resource: "shared_count").limit(1000).order(:_rand).collect{|c| c.content rescue nil}.compact
     percentile_raw = {}
