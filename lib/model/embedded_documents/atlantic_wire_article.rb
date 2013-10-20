@@ -1,6 +1,4 @@
-require_relative 'new_york_times_media.rb'
-[:author, :author=, :categories, :categories=, :content, :content=, :entry_id, :entry_id=, :id, :last_modified, :parse, :parse_datetime, :published, :published=, :sanitize!, :summary, :summary=, :title, :title=, :updated, :updated=, :url, :url=]
-class NewYorkTimesArticle
+class AtlanticWireArticle
   include MongoMapper::EmbeddedDocument
   key :categories, Array
   key :content, String
