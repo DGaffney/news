@@ -29,7 +29,7 @@ class GuardianArticle
     obj.thumbnail = article.fields.thumbnail rescue nil
     obj.wordcount = article.fields.wordcount.to_i rescue nil
     obj.score = article.fields.score.to_f rescue nil
-    obj.save!
+    obj.save
     obj
   end
 end

@@ -3,5 +3,6 @@ class NewYorkTimesCrawl
   
   def perform
     NewYorkTimes.crawl
+    NewYorkTimesCrawl.perform_async
   end
 end

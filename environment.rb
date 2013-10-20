@@ -9,6 +9,7 @@ require 'bcrypt'
 require 'sinatra/flash'
 require 'sidekiq'
 require 'sidekiq/web'
+require 'feedzirra'
 
 MongoMapper.connection = Mongo::MongoClient.new("ec2-54-224-26-29.compute-1.amazonaws.com", 27017, :pool_size => 25, :pool_timeout => 60)
 

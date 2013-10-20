@@ -28,7 +28,7 @@ gem "rest-client"
 
 #crawlers
 gem 'npr'
-
+gem 'feedzirra'
 #servers
 gem "passenger"
 gem "thin"

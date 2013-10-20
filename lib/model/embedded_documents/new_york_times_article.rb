@@ -52,7 +52,7 @@ class NewYorkTimesArticle
         obj.media << media_obj
       end
     end
-    obj.save!
+    obj.save
     obj
   end
 end

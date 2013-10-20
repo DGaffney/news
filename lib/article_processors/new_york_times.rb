@@ -10,7 +10,7 @@ module NewYorkTimesArticleProcessor
     a.new_york_times = NewYorkTimesArticle.new_from_raw(article)
     a.published_at = a.new_york_times.published_date
     a.author_ids = authors.collect(&:id)
-    a.save!
+    a.save
   end
   
 end

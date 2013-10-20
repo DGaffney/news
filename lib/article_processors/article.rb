@@ -22,7 +22,7 @@ module ArticleProcessor
     authors.collect do |author|
       author = Author.first_or_create(author)
       author.article_ids << article_id
-      author.save!
+      author.save
       author
     end
   end

@@ -3,6 +3,7 @@ class ProcessArticle
   include NewYorkTimesArticleProcessor
   include GuardianArticleProcessor
   include NPRArticleProcessor
+  include AtlanticWireArticleProcessor
   include Sidekiq::Worker
   
   def perform(article, provenance)
