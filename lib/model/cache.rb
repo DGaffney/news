@@ -9,12 +9,14 @@ class Cache
   key :content
   key :resource, String
   key :opts, Hash
-  
-  def self.get(url, resource, opts={})
-    if cached = Cache.first(:url => url, :resource => resource, :opts => opts)
+  timestamps!
+
+  def self.get(url, resource, opts={}, last_updated_at = Time.now-1.day)
+    cached = Cache.first(:url => url, :resource => resource, :opts => opts)
+    if cached && cached.updated_at > last_updated_at
       return cached.content
     else
-      cached = Cache.new(:url => url, :resource => resource, :opts => opts)
+      cached = Cache.first_or_new(:url => url, :resource => resource, :opts => opts)
       cached.content = self.send("request_#{resource}", url, opts)
       cached.save!
       return cached.content

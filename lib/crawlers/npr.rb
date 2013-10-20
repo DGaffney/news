@@ -1,5 +1,5 @@
 require 'npr'
-class NPRCrawl < Crawler
+class NPRNews < Crawler
   
   def self.crawl(days_ago=30)
     limit = Setting.npr_paginate_value
