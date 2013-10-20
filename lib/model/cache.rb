@@ -18,6 +18,8 @@ class Cache
     else
       cached = Cache.first_or_new(:url => url, :resource => resource, :opts => opts)
       cached.content = self.send("request_#{resource}", url, opts)
+      cached.updated_at = Time.now
+      cached.created_at ||= Time.now
       cached.save!
       return cached.content
     end
