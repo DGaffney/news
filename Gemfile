@@ -26,6 +26,9 @@ gem "oauth2"
 gem "nokogiri"
 gem "rest-client"
 
+#crawlers
+gem 'npr'
+
 #servers
 gem "passenger"
 gem "thin"

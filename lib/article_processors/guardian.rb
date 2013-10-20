@@ -13,7 +13,7 @@ module GuardianArticleProcessor
     a.guardian = GuardianArticle.new_from_raw(article)
     a.published_at = a.guardian.web_publication_date
     a.content = article.fields.standfirst rescue nil
-    a.save!
+    a.save
   end
   
 end

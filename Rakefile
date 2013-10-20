@@ -14,11 +14,13 @@ task :seeds do
   Setting.twitter_consumer_secret = "XswMmYIF1fu2nXnWhgHXq9STYlLKelGDvnWSJ76uzI"
   Setting.facebook_app_id = "558094644251461"
   Setting.facebook_app_secret = "d23dfa36da5553138fa6d50f7a1b1288"
-  
+  Setting.npr_api_key = "MDEyNDI3MzE2MDEzODIxNTA0NDM5NjAyZA001"
+  Setting.guardian_content_api_key = "qxusnk94qsxsuzepdqxgpkxh"
+  Setting.npr_paginate_value = 10
   Cache.ensure_index([[:resource, 1], [:url, 1]])
   Cache.ensure_index(:resource)
   Cache.ensure_index([[:resource, 1], [:_rand, 1]])
-  
+
   Article.ensure_index(:url)
   Article.ensure_index(:created_at)
   Article.ensure_index(:published_at)

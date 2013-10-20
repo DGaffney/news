@@ -11,6 +11,7 @@ class Article
   key :published_at, Time
   one :new_york_times, :through => NewYorkTimesArticle, :class_name => "NewYorkTimesArticle"
   one :guardian, :through => GuardianArticle, :class_name => "GuardianArticle"
+  one :npr, :through => NPRArticle, :class_name => "NPRArticle"
   many :authors, :in => :author_ids
   timestamps!
   
