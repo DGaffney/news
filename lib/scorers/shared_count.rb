@@ -6,7 +6,7 @@ class SharedCountScorer < Scorer
   def self.percentile(url)
     shared_count_data = Cache.first(resource: "shared_count", url: url)
     SharedCountScorer.store_raw(url) if shared_count_data.nil?
-    raise "Shared Count Data was not requested at run time. Failing and retrying."
+    raise "Shared Count Data was not requested at run time. Failing and retrying." if shared_count_data.nil?
     shared_count_data = shared_count_data.content
     keys = shared_count_data.keys
     other_shared_count_scores = Cache.fields(:content).where(resource: "shared_count").limit(1000).order(:_rand).collect{|c| c.content rescue nil}.compact
