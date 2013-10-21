@@ -64,4 +64,20 @@ module LayoutHelper
   def account_row_partial_path(domain)
     `ls #{File.dirname(__FILE__)}/views/account`.split("\n").include?(domain.to_s) ? "account/#{domain}/row" : "account/row"
   end
+  
+  def publisher_image(article, scale="primary")
+    size = case scale
+    when "primary"
+      64
+    when "secondary"
+      32
+    when "tertiary"
+      24
+    when "quaternary"
+      16
+    else
+      64
+    end
+    return "<img src=\"/images/publishers/#{article.publisher_code}.jpg\" width=\"#{size}\" height=\"#{size}\"/>"
+  end
 end

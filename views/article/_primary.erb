@@ -2,4 +2,5 @@
   <h1><%= partial "/article/title", :locals => {:article => article} %></h1>
   <p><%= partial "/article/byline", :locals => {:article => article} %></p>
   <%= partial "/article/content", :locals => {:article => article} %>
+  <%= publisher_image(article) %>
 </span>

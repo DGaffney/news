@@ -24,17 +24,17 @@ class NewYorkTimes < Crawler
 
   def self.most_recent_linear(offset=0)
     @base_url = "http://api.nytimes.com/svc/news/v3/content/all/all.json"
-    return Hashie::Mash[JSON.parse(RestClient.get(@base_url+"?api-key="+@newswire_api_key+"&offset=#{offset}"))]
+    return Hash[JSON.parse(RestClient.get(@base_url+"?api-key="+@newswire_api_key+"&offset=#{offset}"))]
   end
 
   def self.most_recent_temporal(offset=0, hrs=24)
     @base_url = "http://api.nytimes.com/svc/news/v3/content/all/all/#{hrs}.json"
-    return Hashie::Mash[JSON.parse(RestClient.get(@base_url+"?api-key="+@newswire_api_key+"&offset=#{offset}"))]
+    return Hash[JSON.parse(RestClient.get(@base_url+"?api-key="+@newswire_api_key+"&offset=#{offset}"))]
   end
 
   def self.specific_article_details(url)
     @base_url = "http://api.nytimes.com/svc/news/v3/content.json"
-    return Hashie::Mash[JSON.parse(RestClient.get(@base_url+"?api-key=#{@newswire_api_key}&url="+url.gsub("/", "%2F")))].results
+    return Hash[JSON.parse(RestClient.get(@base_url+"?api-key=#{@newswire_api_key}&url="+url.gsub("/", "%2F")))].results
   end
   
 end

@@ -7,7 +7,6 @@ gem 'bitly', '0.9.0'
 gem 'rake'
 gem 'bson_ext'
 gem 'json'
-gem 'hashie'
 gem "sinatra"
 gem "tux"
 gem "oauth"

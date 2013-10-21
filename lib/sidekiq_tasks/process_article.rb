@@ -7,7 +7,7 @@ class ProcessArticle
   include Sidekiq::Worker
   
   def perform(article, provenance)
-    self.send("process_#{provenance}", Hashie::Mash[article])
+    self.send("process_#{provenance}", Hash[article])
   end
   
 end

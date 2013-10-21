@@ -1,6 +1,5 @@
 require 'mongo_mapper'
 require 'rest-client'
-require 'hashie'
 require 'json'
 require 'resque'
 require 'pry'

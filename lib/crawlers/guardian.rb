@@ -34,7 +34,7 @@ class Guardian < Crawler
       "&api-key=#{@guardian_api_key}"
     ].join
 
-    return Hashie::Mash[JSON.parse(RestClient.get(url))].response
+    return Hash[JSON.parse(RestClient.get(url))].response
   end
   
 end

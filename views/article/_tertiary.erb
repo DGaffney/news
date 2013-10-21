@@ -1,4 +1,5 @@
 <span class="span3 text-center">
   <h3><%= partial "/article/title", :locals => {:article => article} %></h3>
   <p><%= partial "/article/byline", :locals => {:article => article} %></p>
+  <%= publisher_image(article, "tertiary") %>
 </span>
