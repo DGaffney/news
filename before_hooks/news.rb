@@ -4,5 +4,5 @@ end
 
 before "/news*" do
   conditions = pagination_conditions(params)
-  @locals = news_locals(conditions)  
+  @locals = news_locals(conditions)
 end
