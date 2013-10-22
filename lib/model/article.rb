@@ -21,6 +21,7 @@ class Article
   one :washington_post, :through => WashingtonPostArticle, :class_name => "WashingtonPostArticle"
   one :salon, :through => SalonArticle, :class_name => "SalonArticle"
   one :wall_street_journal, :through => WallStreetJournalArticle, :class_name => "WallStreetJournalArticle"
+  one :politico, :through => PoliticoArticle, :class_name => "PoliticoArticle"
   many :authors, :in => :author_ids
   timestamps!
   

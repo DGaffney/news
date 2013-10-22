@@ -45,3 +45,5 @@ set :erb, :layout => :'layouts/main'
 enable :sessions
 
 helpers LayoutHelper, ParamsHelper, LoginHelper, AuthenticateHelper
+CRAWLERS = [NewYorkTimesCrawl, GuardianCrawl, NPRCrawl, AtlanticWireCrawl, HuffingtonPostCrawl, MotherJonesCrawl, ChristianScienceMonitorCrawl, ReutersCrawl, BBCNewsCrawl, WashingtonPostCrawl, SalonCrawl, WallStreetJournalCrawl, PoliticoCrawl]
+

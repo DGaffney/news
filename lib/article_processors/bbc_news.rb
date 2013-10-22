@@ -1,6 +1,6 @@
 module BBCNewsArticleProcessor
   
-  def process_atlantic_wire(article)
+  def process_bbc_news(article)
     raise "NO URL FOUND FOR ARTICLE - #{article.id}" if article.url.nil? || article.url.empty?
     a = Article.first_or_new(:url => article.url)
     a.title = article.title

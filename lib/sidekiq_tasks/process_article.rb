@@ -12,6 +12,7 @@ class ProcessArticle
   include WashingtonPostArticleProcessor
   include SalonArticleProcessor
   include WallStreetJournalArticleProcessor
+  include PoliticoArticleProcessor
   include Sidekiq::Worker
   
   def perform(article, provenance)

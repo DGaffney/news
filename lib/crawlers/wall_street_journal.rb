@@ -1,4 +1,5 @@
 require 'feedzirra'
+require 'open-uri'
 class WallStreetJournal < Crawler
   
   def self.crawl
@@ -6,7 +7,7 @@ class WallStreetJournal < Crawler
       feed = Feedzirra::Feed.fetch_and_parse(feed_url)
       feed.entries.each do |article|
         url = nil
-        open(articles.first.url) do |resp|
+        open(article.url) do |resp|
           url = resp.base_uri.to_s
         end
         next if !Article.first(:url => url).nil?
