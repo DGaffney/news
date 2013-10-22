@@ -17,6 +17,10 @@ class Article
   one :huffington_post, :through => HuffingtonPostArticle, :class_name => "HuffingtonPostArticle"
   one :christian_science_monitor, :through => ChristianScienceMonitorArticle, :class_name => "ChristianScienceMonitorArticle"
   one :reuters, :through => ReutersArticle, :class_name => "ReutersArticle"
+  one :bbc_news, :through => BBCNewsArticle, :class_name => "BBCNewsArticle"
+  one :washington_post, :through => WashingtonPostArticle, :class_name => "WashingtonPostArticle"
+  one :salon, :through => SalonArticle, :class_name => "SalonArticle"
+  one :wall_street_journal, :through => WallStreetJournalArticle, :class_name => "WallStreetJournalArticle"
   many :authors, :in => :author_ids
   timestamps!
   

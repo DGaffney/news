@@ -6,6 +6,12 @@ class ProcessArticle
   include AtlanticWireArticleProcessor
   include MotherJonesArticleProcessor
   include HuffingtonPostArticleProcessor
+  include ReutersArticleProcessor
+  include ChristianScienceMonitorArticleProcessor
+  include BBCNewsArticleProcessor
+  include WashingtonPostArticleProcessor
+  include SalonArticleProcessor
+  include WallStreetJournalArticleProcessor
   include Sidekiq::Worker
   
   def perform(article, provenance)
