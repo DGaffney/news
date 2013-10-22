@@ -15,7 +15,7 @@ gem 'bcrypt-ruby', '~> 3.0.1'
 gem "sinatra-flash", "~> 0.3.0"
 gem "rack-ssl-enforcer", "~> 0.2.5"
 gem 'sidekiq'
-
+gem 'puma'
 #user importing
 gem "koala"
 gem "twitter", '4.8.1'
