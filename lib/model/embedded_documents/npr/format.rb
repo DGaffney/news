@@ -8,7 +8,7 @@ class NPRFormat
     obj = self.new
     obj.wm = format.wm
     obj.mediastream = format.mediastream
-    obj.mp3s = format.mp3s.collect(&:to_s)
+    obj.mp3s = format.mp3s
     obj
   end
 end

@@ -15,10 +15,14 @@ task :seeds do
   Setting.facebook_app_id = "558094644251461"
   Setting.facebook_app_secret = "d23dfa36da5553138fa6d50f7a1b1288"
   Setting.npr_api_key = "MDEyNDI3MzE2MDEzODIxNTA0NDM5NjAyZA001"
-  Setting.guardian_content_api_key = "qxusnk94qsxsuzepdqxgpkxh"
   Setting.npr_paginate_value = 10
+  Setting.guardian_content_api_key = "qxusnk94qsxsuzepdqxgpkxh"
+  Setting.atlantic_wire_feed_url = "http://feeds.feedburner.com/TheAtlanticWire?format=xml"
+  Setting.huffington_post_feed_url = "http://feeds.huffingtonpost.com/huffingtonpost/raw_feed"
+  Setting.mother_jones_feed_url = "http://feeds.feedburner.com/motherjones/BlogsAndArticles"
   Cache.ensure_index([[:resource, 1], [:url, 1]])
   Cache.ensure_index(:resource)
+  Cache.ensure_index(:_rand)
   Cache.ensure_index([[:resource, 1], [:_rand, 1]])
 
   Article.ensure_index(:url)
@@ -33,4 +37,10 @@ task :seeds do
   Provider::Twitter::User.ensure_index([[:account_id, 1], [:twitter_id, 1]], :unique => true)
   Provider::Twitter::Tweet.ensure_index([[:account_id, 1], [:twitter_id, 1]], :unique => true)
   Provider::Twitter::Relationship.ensure_index([[:account_id, 1], [:next_cursor, 1], [:direction, 1]], :unique => true)
+end
+
+
+desc "Blast the Database"
+task :blow_out do
+  [Account, Article, Author, Ego, Score, Topic, URLTitle].collect(&:collection).collect(&:drop)
 end

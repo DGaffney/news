@@ -13,6 +13,8 @@ class Article
   one :guardian, :through => GuardianArticle, :class_name => "GuardianArticle"
   one :npr, :through => NPRArticle, :class_name => "NPRArticle"
   one :atlantic_wire, :through => AtlanticWireArticle, :class_name => "AtlanticWireArticle"
+  one :mother_jones, :through => MotherJonesArticle, :class_name => "MotherJonesArticle"
+  one :huffington_post, :through => HuffingtonPostArticle, :class_name => "HuffingtonPostArticle"
   many :authors, :in => :author_ids
   timestamps!
   

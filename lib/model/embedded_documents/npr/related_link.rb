@@ -9,7 +9,7 @@ class NPRRelatedLink
     obj = self.new
     obj.npr_id = related_link.id
     obj.caption = related_link.caption
-    obj.links = related_link.links.collect(&:to_s)
+    obj.links = related_link.links
     obj.type = related_link.type
     obj
   end

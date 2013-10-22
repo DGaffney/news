@@ -6,8 +6,8 @@ class NPRByline
   def self.new_from_raw(byline)
     obj = self.new
     obj.npr_id = byline.id
-    obj.links = byline.links.collect(&:to_s)
-    obj.name = byline.name.to_s
+    obj.links = byline.links
+    obj.name = byline.name
     obj
   end
 end

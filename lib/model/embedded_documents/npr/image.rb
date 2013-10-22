@@ -25,7 +25,7 @@ class NPRImage
     obj.link = image.link.to_s
     obj.primary = image.primary?
     obj.producer = image.producer
-    obj.provider = image.provider.to_s
+    obj.provider = image.provider
     obj.src = image.src
     obj.title = image.title
     obj.width = image.width

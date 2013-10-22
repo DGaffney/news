@@ -8,7 +8,7 @@ class Guardian < Crawler
     loop do
       
       guardian.results.each do |article|
-        print "."
+        next if !Article.first(:url => article.webUrl).nil?
         ScoreURL.perform_async(article.webUrl)
         ProcessArticle.perform_async(article, "guardian")
       end

@@ -48,6 +48,7 @@ class NPRArticle
   many :shows, :through => NPRShow, :class_name => "NPRShow"
   one :transcript, :through => NPRTranscript, :class_name => "NPRTranscript"
   def self.new_from_raw(article)
+    article = JSON.parse(article.to_json) #remove the class structure placed on the object by the gem
     obj = self.new
     obj.npr_id = article.id
     obj.container = article.container
@@ -74,7 +75,7 @@ class NPRArticle
     obj.external_assets = article.external_assets.collect{|external_asset| NPRExternalAsset.new_from_raw(external_asset)}
     obj.images = article.images.collect{|image| NPRImage.new_from_raw(image)}
     obj.list_texts = article.list_texts.collect{|list_text| NPRListText.new_from_raw(list_text)}
-    obj.members = article.members.collect{|member| NPRMember.new_from_raw(member)}
+    obj.members = article.members.collect{|member| NPRMember.new_from_raw(member)}#
     obj.organizations = article.organizations.collect{|organization| NPROrganization.new_from_raw(organization)}
     obj.parents = article.parents.collect{|parent| NPRParent.new_from_raw(parent)}
     obj.promo_arts = article.promo_arts.collect{|promo_art| NPRPromoArt.new_from_raw(promo_art)}

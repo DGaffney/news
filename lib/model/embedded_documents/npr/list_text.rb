@@ -8,7 +8,7 @@ class NPRListText
     obj = self.new
     obj.npr_id = list_text.id
     obj.tag = list_text.tag
-    obj.paragraphs = list_text.paragraphs.collect(&:to_s)
+    obj.paragraphs = list_text.paragraphs
     obj
   end
 end

@@ -12,6 +12,7 @@ class NPRNews < Crawler
     articles = NPR::Story.where(date: [days_ago.days.ago..Time.now]).order("date ascending").limit(limit).offset(offset).to_a
     while !articles.empty?
       articles.each do |article|
+        next if !Article.first(:url => article.links.first.to_s).nil?
         ScoreURL.perform_async(article.links.first.to_s)
         ProcessArticle.perform_async(article, "npr")
       end
