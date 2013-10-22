@@ -9,8 +9,8 @@ module ParamsHelper
   end
 
   def news_locals(conditions)
-    params.start_range ||= params.time.nil? ? Time.parse(Article.earliest_time_range) : Time.parse(params[:time].split(" - ").first)
-    params.end_range ||= params.time.nil? ? Time.parse(Article.latest_time_range+" 23:59:59") : Time.parse(params[:time].split(" - ").last+" 23:59:59")
+    params.start_range ||= params.time.nil? ? Time.parse(Time.now.ymd) : Time.parse(params[:time].split(" - ").first)
+    params.end_range ||= params.time.nil? ? Time.parse(Time.now.ymd+" 23:59:59") : Time.parse(params[:time].split(" - ").last+" 23:59:59")
     article_ids = Score.a_priori_limit_offset(params).paginate(paginate(conditions)).collect(&:article_id)
     
     articles = Hash[Article.where(:id => article_ids).collect{|a| [a.id, a]}]
