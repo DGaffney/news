@@ -15,6 +15,8 @@ class Article
   one :atlantic_wire, :through => AtlanticWireArticle, :class_name => "AtlanticWireArticle"
   one :mother_jones, :through => MotherJonesArticle, :class_name => "MotherJonesArticle"
   one :huffington_post, :through => HuffingtonPostArticle, :class_name => "HuffingtonPostArticle"
+  one :christian_science_monitor, :through => ChristianScienceMonitorArticle, :class_name => "ChristianScienceMonitorArticle"
+  one :reuters, :through => ReutersArticle, :class_name => "ReutersArticle"
   many :authors, :in => :author_ids
   timestamps!
   

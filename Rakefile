@@ -20,6 +20,9 @@ task :seeds do
   Setting.atlantic_wire_feed_url = "http://feeds.feedburner.com/TheAtlanticWire?format=xml"
   Setting.huffington_post_feed_url = "http://feeds.huffingtonpost.com/huffingtonpost/raw_feed"
   Setting.mother_jones_feed_url = "http://feeds.feedburner.com/motherjones/BlogsAndArticles"
+  Setting.christian_science_monitor_feed_url = "http://rss.csmonitor.com/feeds/csm"
+  Setting.reuters_feed_url = "http://feeds.reuters.com/reuters/topNews"
+
   Cache.ensure_index([[:resource, 1], [:url, 1]])
   Cache.ensure_index(:resource)
   Cache.ensure_index(:_rand)
