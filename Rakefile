@@ -57,3 +57,18 @@ task :blow_out do
   [Account, Article, Author, Ego, Score, Topic, URLTitle].collect(&:collection).collect(&:drop)
 end
 
+desc "Re run scores"
+task :rerun do
+  Score.collection.drop
+  offset = 0
+  limit = 100
+  articles = Article.limit(limit).offset(offset).to_a;false
+  while !articles.empty?
+    print "."
+    articles.each do |article|
+      RankURL.perform_async(article.url)
+    end
+    offset += limit
+    articles = Article.limit(limit).offset(offset).to_a;false
+  end
+end

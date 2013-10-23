@@ -42,4 +42,8 @@ class Article
   def self.latest_time_range
     Article.where(:published_at.ne => nil).order(:published_at).last.published_at.ymd
   end
+  
+  def track_url(current_ego)
+    "/articles/#{self.id}/#{current_ego.id rescue "none"}"
+  end
 end
