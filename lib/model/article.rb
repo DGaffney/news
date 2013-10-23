@@ -24,6 +24,7 @@ class Article
   one :politico, :through => PoliticoArticle, :class_name => "PoliticoArticle"
   one :economist, :through => EconomistArticle, :class_name => "EconomistArticle"
   one :slate, :through => SlateArticle, :class_name => "SlateArticle"
+  one :foreign_affairs, :through => ForeignAffairsArticle, :class_name => "ForeignAffairsArticle"
   many :authors, :in => :author_ids
   timestamps!
   
