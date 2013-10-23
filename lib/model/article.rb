@@ -22,6 +22,8 @@ class Article
   one :salon, :through => SalonArticle, :class_name => "SalonArticle"
   one :wall_street_journal, :through => WallStreetJournalArticle, :class_name => "WallStreetJournalArticle"
   one :politico, :through => PoliticoArticle, :class_name => "PoliticoArticle"
+  one :economist, :through => EconomistArticle, :class_name => "EconomistArticle"
+  one :slate, :through => SlateArticle, :class_name => "SlateArticle"
   many :authors, :in => :author_ids
   timestamps!
   
