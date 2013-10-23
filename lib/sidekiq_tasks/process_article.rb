@@ -16,6 +16,7 @@ class ProcessArticle
   include EconomistArticleProcessor
   include SlateArticleProcessor
   include ForeignAffairsArticleProcessor
+  include NewYorkerArticleProcessor
   include Sidekiq::Worker
   
   def perform(article, provenance)

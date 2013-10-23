@@ -30,6 +30,7 @@ task :seeds do
   Setting.economist_feed_urls = ["http://www.economist.com/topics/banking/index.xml", "http://www.economist.com/topics/biotechnology/index.xml", "http://www.economist.com/topics/chinese-economy/index.xml", "http://www.economist.com/topics/computer-technology/index.xml", "http://www.economist.com/topics/corporate-governance/index.xml", "http://www.economist.com/topics/economics/index.xml", "http://www.economist.com/topics/environmental-problems-and-protection/index.xml", "http://www.economist.com/topics/european-union/index.xml", "http://www.economist.com/blogs/americasview/index.xml", "http://www.economist.com/blogs/analects/index.xml", "http://www.economist.com/blogs/babbage/index.xml", "http://www.economist.com/blogs/banyan/index.xml", "http://www.economist.com/blogs/baobab/index.xml", "http://www.economist.com/blogs/blighty/index.xml", "http://www.economist.com/blogs/clausewitz/index.xml", "http://www.economist.com/blogs/democracyinamerica/index.xml", "http://www.economist.com/blogs/feastandfamine/index.xml", "http://www.economist.com/blogs/freeexchange/index.xml", "http://wcom/blogs/gametheory/index.xml", "http://www.economist.com/blogs/globalleadership/index.xml", "http://www.economist.com/blogs/graphicdetail/index.xml", "http://www.economist.com/blogs/gulliver/index.xml", "http://www.economist.com/blogs/leviathan/index.xml", "http://www.economist.com/blogs/multimedia/index.xml", "http://www.economist.com/blogs/prospero/index.xml"]
   Setting.slate_feed_url = "http://feeds.slate.com/slate"
   Setting.foreign_affairs_feed_url = "http://www.foreignaffairs.com/rss.xml"
+  Setting.new_yorker_feed_url = "http://www.newyorker.com/services/mrss/feeds/everything.xml"
   Cache.ensure_index([[:resource, 1], [:url, 1]])
   Cache.ensure_index(:resource)
   Cache.ensure_index(:_rand)
@@ -38,8 +39,9 @@ task :seeds do
   Article.ensure_index(:url)
   Article.ensure_index(:created_at)
   Article.ensure_index(:published_at)
-
-  Score.ensure_index([[:article_id, 1], [:provenance, 1]], :unique => true)
+  Article.ensure_index(:publisher_code)
+  
+  Score.ensure_index([[:article_id, 1], [:ego_id, 1], [:provenance, 1]], :unique => true)
   Score.ensure_index([[:article_id, 1], [:provenance, 1], [:value, 1]])
   Score.ensure_index([[:article_id, 1], [:provenance, 1], [:value, 1], [:article_created_at, 1]])
   Score.ensure_index([[:article_id, 1], [:ego_id, 1], [:value, -1]])
