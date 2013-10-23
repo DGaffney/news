@@ -9,7 +9,7 @@ class Score
   timestamps!
   
   def self.a_priori_limit_offset(opts={})
-    opts.limit||=45
+    opts.limit||=68
     opts.offset||=0
     opts.start_range||=Time.parse(Article.earliest_time_range)
     opts.end_range||=Time.parse(Article.latest_time_range+" 23:59:59")

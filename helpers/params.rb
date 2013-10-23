@@ -3,7 +3,7 @@ module ParamsHelper
   def pagination_conditions(params)
     {
       :order => params[:order]                                  || :created_at.desc,
-      :per_page => params[:per_page] && params[:per_page].to_i  || 45,
+      :per_page => params[:per_page] && params[:per_page].to_i  || 68,
       :page => params[:page] && params[:page].to_i              || 1
     }
   end

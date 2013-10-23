@@ -75,6 +75,8 @@ module LayoutHelper
       24
     when "quaternary"
       16
+    when "quintenary"
+      16
     else
       64
     end
