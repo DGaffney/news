@@ -12,6 +12,7 @@ module NewYorkerArticleProcessor
     a.author_ids = authors.collect(&:id)
     a.new_yorker = NewYorkerArticle.new_from_raw(article)
     a.save
+    a
   end
   
 end

@@ -23,4 +23,8 @@ class AtlanticWireArticle
     obj.url = article.url
     obj
   end
+  
+  def tags
+    return categories
+  end
 end

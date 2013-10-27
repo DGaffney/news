@@ -12,6 +12,7 @@ module SlateArticleProcessor
     a.author_ids = authors.collect(&:id)
     a.slate = SlateArticle.new_from_raw(article)
     a.save
+    a
   end
   
 end

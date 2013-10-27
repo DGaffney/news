@@ -12,6 +12,7 @@ module ForeignAffairsArticleProcessor
     a.author_ids = authors.collect(&:id)
     a.foreign_affairs = ForeignAffairsArticle.new_from_raw(article)
     a.save
+    a
   end
   
 end

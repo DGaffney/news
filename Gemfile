@@ -31,3 +31,8 @@ gem 'feedzirra'
 #servers
 gem "passenger"
 gem "thin"
+
+
+gem 'stopwords'
+gem 'stopwords-filter'
+gem 'cld'

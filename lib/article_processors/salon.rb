@@ -13,6 +13,7 @@ module SalonArticleProcessor
     a.author_ids = authors.collect(&:id)
     a.salon = SalonArticle.new_from_raw(article)
     a.save
+    a
   end
   
 end

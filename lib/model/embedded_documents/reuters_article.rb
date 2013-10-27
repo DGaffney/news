@@ -16,4 +16,8 @@ class ReutersArticle
     obj.url = article.url
     obj
   end
+  
+  def junk_categories
+    return ["topNews"]
+  end
 end

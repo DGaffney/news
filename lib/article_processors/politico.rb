@@ -12,6 +12,7 @@ module PoliticoArticleProcessor
     a.author_ids = authors.collect(&:id)
     a.politico = PoliticoArticle.new_from_raw(article)
     a.save
+    a
   end
   
 end

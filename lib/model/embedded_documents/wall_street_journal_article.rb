@@ -13,4 +13,8 @@ class WallStreetJournalArticle
     obj.url = article.url
     obj
   end
+  
+  def junk_categories
+    return ["FREEEUROPE", "PAID", "FREE", "FREEASIA", "FREEINDIA"]
+  end
 end

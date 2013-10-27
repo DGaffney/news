@@ -11,6 +11,7 @@ module NPRArticleProcessor
     authors = extract_authors(authors, a.id)
     a.author_ids = authors.collect(&:id)
     a.save
+    a
   end
   
 end

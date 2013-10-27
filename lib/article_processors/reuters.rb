@@ -12,6 +12,7 @@ module ReutersArticleProcessor
     a.author_ids = authors.collect(&:id)
     a.reuters = ReutersArticle.new_from_raw(article)
     a.save
+    a
   end
   
 end

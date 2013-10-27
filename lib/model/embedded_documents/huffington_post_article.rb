@@ -1,6 +1,5 @@
 class HuffingtonPostArticle
   include MongoMapper::EmbeddedDocument
-  key :categories, Array
   key :content, String
   key :entry_id, String
   key :published, Time

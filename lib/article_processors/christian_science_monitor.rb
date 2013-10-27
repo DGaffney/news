@@ -12,6 +12,7 @@ module ChristianScienceMonitorArticleProcessor
     a.author_ids = authors.collect(&:id)
     a.christian_science_monitor = ChristianScienceMonitorArticle.new_from_raw(article)
     a.save
+    a
   end
   
 end

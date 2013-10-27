@@ -55,4 +55,8 @@ class NewYorkTimesArticle
     obj.save
     obj
   end
+  
+  def categories
+    self.des_facet|self.org_facet|self.per_facet|self.geo_facet
+  end
 end

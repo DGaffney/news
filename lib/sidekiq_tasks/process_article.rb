@@ -20,7 +20,8 @@ class ProcessArticle
   include Sidekiq::Worker
   
   def perform(article, provenance)
-    self.send("process_#{provenance}", Hash[article])
+    article = self.send("process_#{provenance}", Hash[article])
+    UpdateTopics.perform_async(article.id)
   end
   
 end

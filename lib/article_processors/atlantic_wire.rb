@@ -12,6 +12,7 @@ module AtlanticWireArticleProcessor
     a.author_ids = authors.collect(&:id)
     a.atlantic_wire = AtlanticWireArticle.new_from_raw(article)
     a.save
+    a
   end
   
 end

@@ -14,6 +14,7 @@ module GuardianArticleProcessor
     a.published_at = a.guardian.web_publication_date
     a.content = article.fields.standfirst rescue nil
     a.save
+    a
   end
   
 end

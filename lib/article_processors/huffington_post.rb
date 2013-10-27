@@ -11,6 +11,7 @@ module HuffingtonPostArticleProcessor
     a.author_ids = authors.collect(&:id)
     a.huffington_post = HuffingtonPostArticle.new_from_raw(article)
     a.save
+    a
   end
   
 end

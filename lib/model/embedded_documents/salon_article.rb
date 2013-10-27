@@ -17,4 +17,8 @@ class SalonArticle
     obj.url = article.url
     obj
   end
+  
+  def junk_categories
+    return ["All Salon"]
+  end
 end

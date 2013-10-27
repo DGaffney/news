@@ -12,6 +12,7 @@ module WashingtonPostArticleProcessor
     a.author_ids = authors.collect(&:id)
     a.washington_post = WashingtonPostArticle.new_from_raw(article)
     a.save
+    a
   end
   
 end

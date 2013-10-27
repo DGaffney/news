@@ -34,6 +34,7 @@ Dir[File.dirname(__FILE__) + '/lib/scorers/*.rb'].each {|file| require file }
 Dir[File.dirname(__FILE__) + '/lib/topic_generators/*.rb'].each {|file| require file }
 Dir[File.dirname(__FILE__) + '/lib/model/embedded_documents/*.rb'].each {|file| require file }
 Dir[File.dirname(__FILE__) + '/lib/model/*.rb'].each {|file| require file }
+Dir[File.dirname(__FILE__) + '/lib/model/edges/*.rb'].each {|file| require file }
 Dir[File.dirname(__FILE__) + '/lib/model/twitter/*.rb'].each {|file| require file }
 Dir[File.dirname(__FILE__) + '/lib/login/*.rb'].each {|file| require file }
 Dir[File.dirname(__FILE__) + '/lib/sidekiq_tasks/*.rb'].each {|file| require file }

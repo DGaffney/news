@@ -30,7 +30,7 @@ class Article
   timestamps!
   
   scope :within_time_range,  lambda { |start_range, end_range| where(:created_at.gte => start_range, :created_at.lte => end_range) }
-  
+  scope :by_publisher_code,  lambda { |publisher_code| where(:publisher_code => publisher_code) }
   def raw
     self.send(self.publisher_code)
   end
@@ -45,5 +45,26 @@ class Article
   
   def track_url(current_ego)
     "/articles/#{self.id}/#{current_ego.id rescue "none"}"
+  end
+
+  def categories
+    return self.raw.respond_to?(:categories) ? self.cleaned_categories : []
+  end
+  
+  def cleaned_categories
+    if self.raw.categories.empty?
+      return []
+    elsif self.raw.categories.class == String
+      return self.raw.categories.split(",")
+    end
+    return self.raw.categories-self.junk_categories
+  end
+
+  def junk_categories
+    (self.raw.respond_to?(:junk_categories) ? self.raw.junk_categories : [])|[""]
+  end
+
+  def key_terms
+    self.title.remove_stopwords.split(/\W/).reject{|s| s.length < 3}
   end
 end
