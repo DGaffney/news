@@ -36,3 +36,4 @@ gem "thin"
 gem 'stopwords'
 gem 'stopwords-filter'
 gem 'cld'
+gem 'ruby-stemmer'

@@ -98,8 +98,4 @@ class Provider::Twitter::Tweet
     end
     obj
   end  
-
-rescue 
-  return
-  
 end
