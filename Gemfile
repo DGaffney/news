@@ -37,3 +37,5 @@ gem 'stopwords'
 gem 'stopwords-filter'
 gem 'cld'
 gem 'ruby-stemmer'
+
+gem 'ruby-tf-idf'

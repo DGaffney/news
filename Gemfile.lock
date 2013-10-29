@@ -187,6 +187,7 @@ GEM
       rack-test (>= 0.5)
       ripl (>= 0.3.5)
     ruby-stemmer (0.9.3)
+    ruby-tf-idf (0.0.3)
     sass (3.2.12)
     sass-rails (3.2.6)
       railties (~> 3.2.0)
@@ -271,6 +272,7 @@ DEPENDENCIES
   resque-web
   rest-client
   ruby-stemmer
+  ruby-tf-idf
   sidekiq
   sinatra
   sinatra-flash (~> 0.3.0)
