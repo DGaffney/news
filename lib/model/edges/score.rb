@@ -7,20 +7,41 @@ class Score
   key :ego_id, ObjectId
   key :article_created_at, Time
   timestamps!
-  
-  def self.a_priori_limit_offset(opts={})
-    opts.limit||=68
-    opts.offset||=0
-    opts.start_range||=Time.parse(Article.earliest_time_range)
-    opts.end_range||=Time.parse(Article.latest_time_range+" 23:59:59")
-    self.where(:article_id.ne => nil, :ego_id => nil, :article_created_at.gte => opts.start_range, :article_created_at.lte => opts.end_range).order(:value.desc).fields(:article_id).limit(opts.limit).offset(opts.offset)
+  def self.scores_for_ego(ego, params)
+    Score.fields(
+    :article_id, 
+    :value
+    ).where(
+      :article_created_at.gte => params.start_range, 
+      :article_created_at.lte => params.end_range, 
+      :ego_id => ego.id, 
+      :provenance => "article_tweet_score"
+    ).sort(
+      :score.desc
+    ).paginate(
+      :per_page => params.per_page,
+      :page => params.page
+    ).collect{|s| 
+      [s.article_id, s.value]
+    }.sort_by{|k,v| v}.reverse
   end
-
-  def self.a_priori_limit_offset(opts={})
-    opts.limit||=68
-    opts.offset||=0
-    opts.start_range||=Time.parse(Article.earliest_time_range)
-    opts.end_range||=Time.parse(Article.latest_time_range+" 23:59:59")
-    self.where(:article_id.ne => nil, :ego_id => nil, :article_created_at.gte => opts.start_range, :article_created_at.lte => opts.end_range).order(:value.desc).fields(:article_id).limit(opts.limit).offset(opts.offset)
+  
+  def self.scores_for_popularity(params)
+    Score.fields(
+    :article_id,
+    :value
+    ).where(
+      :article_created_at.gte => params.start_range,
+      :article_created_at.lte => params.end_range,
+      :ego_id => nil, 
+      :provenance => "score_url"
+    ).sort(
+      :score.desc
+    ).paginate(
+      :per_page => params.per_page,
+      :page => params.page
+    ).collect{|s| 
+      [s.article_id, s.value]
+    }.sort_by{|k,v| v}.reverse
   end
 end

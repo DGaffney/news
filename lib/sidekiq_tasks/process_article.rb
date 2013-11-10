@@ -22,6 +22,9 @@ class ProcessArticle
   def perform(article, provenance)
     article = self.send("process_#{provenance}", Hash[article])
     UpdateTopics.perform_async(article.id)
+    Account.where(:domain => "twitter").fields(:_id).each do |account|
+      ScoreTweetForArticle.perform_async(article.id, account.id)
+    end
   end
   
 end

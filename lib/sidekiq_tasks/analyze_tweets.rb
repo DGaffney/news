@@ -2,7 +2,7 @@ class AnalyzeTweets
   include Sidekiq::Worker
   def perform(credentials)
     account = Account.fields(:_id).where(:credentials => credentials).first
-    twitter_bag_of_words = Provider::Twitter::Tweet.fields(:text).where(:account_id => BSON::ObjectId(account_id)).collect(&:text).join(" ").remove_stopwords.split.uniq
+    twitter_bag_of_words = Provider::Twitter::Tweet.fields(:text).where(:account_id => account.id).collect(&:text).join(" ").remove_stopwords.split.uniq
     datapoint = AccountDatapoint.first_or_create(:account_id => account.id, :provenance => "twitter_bag_of_words")
     datapoint.value = twitter_bag_of_words
     datapoint.save

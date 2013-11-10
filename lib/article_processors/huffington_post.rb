@@ -4,7 +4,7 @@ module HuffingtonPostArticleProcessor
     raise "NO URL FOUND FOR ARTICLE - #{article.id}" if article.url.nil? || article.url.empty?
     a = Article.first_or_new(:url => article.url)
     a.title = article.title
-    a.content = Nokogiri.parse(article.content).children.first.text rescue binding.pry
+    a.content = Nokogiri.parse(article.content).children.first.text rescue nil
     a.publisher_code = "huffington_post"
     a.published_at = Time.parse(article.published)
     authors = extract_authors(article.author, a.id)

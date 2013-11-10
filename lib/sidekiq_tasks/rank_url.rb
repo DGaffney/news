@@ -10,3 +10,6 @@ class RankURL
     RankURL.perform_in(1.day, url)
   end
 end
+# Article.fields(:url).each do |article|
+#   RankURL.perform_async(article.url)
+# end

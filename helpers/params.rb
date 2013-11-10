@@ -8,34 +8,33 @@ module ParamsHelper
     }
   end
 
-  def news_locals(conditions)
+  def news_locals(params)
     params.start_range ||= params.time.nil? ? Time.parse(Time.now.ymd) : Time.parse(params[:time].split(" - ").first)
     params.end_range ||= params.time.nil? ? Time.parse(Time.now.ymd+" 23:59:59") : Time.parse(params[:time].split(" - ").last+" 23:59:59")
-    article_ids = Score.a_priori_limit_offset(params).paginate(paginate(conditions)).collect(&:article_id)
-    
-    articles = Hash[Article.where(:id => article_ids).collect{|a| [a.id, a]}]
+    params.personal_relevance = params.personal_relevance.nil? ? 0 : params.personal_relevance.to_f/100
+    params.objective_importance = params.objective_importance.nil? ? 0 : params.objective_importance.to_f/100
+    personal_relevance_article_ids = Hash[Score.scores_for_ego(current_ego, params)]
+    objective_importance_article_ids = Hash[Score.scores_for_popularity(params)]
+    articles = Hash[Article.where(:id => (popular_article_ids.keys+personal_relevance_article_ids.keys).uniq).fields(:title, :url, :_id, :content, :publisher_code).collect{|a| [a.id, a]}]
+    scores = {}
+    articles.keys.each do |article_id|
+      personal_relevance_score = personal_relevance_article_ids[article_id]*params.personal_relevance rescue 0
+      objective_importance_score = objective_importance_article_ids[article_id]*params.objective_importance rescue 0
+      scores[article_id] = personal_relevance_score+objective_importance_score
+    end
+    sorted_articles = []
+    scores.sort_by{|k,v| v}.reverse.each do |article_id, score|
+      sorted_articles << articles[article_id]
+    end
     {
-      :articles => article_ids.collect{|article_id| articles[article_id]},
-      :page => paginate(conditions)[:page],
+      :articles => sorted_articles.first(params.per_page),
+      :page => params.page,
       :next_page => true,
-      :previous_page => paginate(conditions)[:page] != 1,
+      :previous_page => params.page != 1,
       :html_page_title => "The News", 
       :page_title => "The News",
       :start_range => params.start_range,
       :end_range => params.end_range
     }
   end
-  
-  def where(conditions)
-    conditions.dup.delete_if{|k,v| [:order, :per_page, :page].include?(k)}
-  end
-  
-  def paginate(conditions)
-    Hash[[:page, :per_page].zip(conditions.dup.values_at(:page, :per_page))]
-  end
-  
-  def order(conditions)
-    conditions.dup[:order]
-  end
-
 end

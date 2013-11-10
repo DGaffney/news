@@ -15,5 +15,8 @@ class UpdateTopics
     article_datapoint = ArticleDatapoint.first_or_create(:article_id => article.id, :provenance => "article_topics")
     article_datapoint.value = article_topics
     article_datapoint.save
+    Account.where(:domain => "twitter").fields(:_id).each do |account|
+      ScoreTweetForArticle.perform_async(article.id, account.id)
+    end
   end
 end
