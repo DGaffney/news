@@ -15,7 +15,7 @@ module ParamsHelper
     params.objective_importance = params.objective_importance.nil? ? 0 : params.objective_importance.to_f/100
     personal_relevance_article_ids = current_ego.nil? ? {} : Hash[Score.scores_for_ego(current_ego, params)]
     objective_importance_article_ids = Hash[Score.scores_for_popularity(params)]
-    articles = Hash[Article.where(:id => (popular_article_ids.keys+personal_relevance_article_ids.keys).uniq).fields(:title, :url, :_id, :content, :publisher_code).collect{|a| [a.id, a]}]
+    articles = Hash[Article.where(:id => (objective_importance_article_ids.keys+personal_relevance_article_ids.keys).uniq).fields(:title, :url, :_id, :content, :publisher_code).collect{|a| [a.id, a]}]
     scores = {}
     articles.keys.each do |article_id|
       personal_relevance_score = personal_relevance_article_ids[article_id]*params.personal_relevance rescue 0
