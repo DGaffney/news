@@ -5,6 +5,8 @@
       <input type="hidden" class="slider" id="personal-relevance-slider" name="personal_relevance" value="<%= params[:personal_relevance] || 50 %>">
     </div>
     <div class="span4">
+      <h4>Search</h4>
+      <input type="query" name="query" id="query" value="<%= query||"" %>"/>
       <h4>Time</h4>
       <input type="text" name="time" id="time" value="<%= start_range.ymd %> - <%= end_range.ymd %>"/>
     </div>

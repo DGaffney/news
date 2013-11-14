@@ -6,7 +6,6 @@ class AtlanticWire < Crawler
     feed.entries.each do |article|
       url = URI(URI.decode("http%3A%2F%2Fwww.theatlanticwire.com"+article.summary.split("www.theatlanticwire.com")[1].split("\"").first.split("&t=").first)).to_s rescue nil
       next if !Article.first(:url => url).nil?
-      ScoreURL.perform_async(url)
       ProcessArticle.perform_async(article, "atlantic_wire")
     end
   end

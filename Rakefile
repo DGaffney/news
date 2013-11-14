@@ -37,7 +37,7 @@ task :seeds do
   Cache.ensure_index([[:resource, 1], [:_rand, 1]])
 
   AccountDatapoint.ensure_index([[:account_id, 1], [:provenance, 1]])
-  Article.ensure_index(:url)
+  Article.ensure_index(:url, :unique => true)
   Article.ensure_index(:created_at)
   Article.ensure_index(:published_at)
   Article.ensure_index(:publisher_code)

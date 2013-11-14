@@ -1,10 +1,11 @@
 class ScoreURL
   include Sidekiq::Worker
   
-  def perform(url)
-    SharedCountScorer.store_raw(url)
+  def perform(article_id)
+    article = Article.find(article_id)
+    SharedCountScorer.store_raw(article.url)
     # BitlyScorer.store_raw(url)
-    RankURL.perform_in(15.minutes, url)
-    ScoreURL.perform_in(1.day, url)
+    RankURL.perform_async(article.id)
+    ScoreURL.perform_in(1.day, article.id)
   end
 end

@@ -6,16 +6,21 @@ class Score
   key :value, Float
   key :ego_id, ObjectId
   key :article_created_at, Time
+  key :article_terms, Array
+  belongs_to :article
+  belongs_to :ego
   timestamps!
   def self.scores_for_ego(ego, params)
+    where = {:article_created_at.gte => params.start_range, 
+    :article_created_at.lte => params.end_range, 
+    :ego_id => ego.id, 
+    :provenance => "article_tweet_score"}
+    where.article_terms = /.*(,| |^)#{Regexp.escape(params.query)}.*/i if params.query && !params.query.empty?
     Score.fields(
     :article_id, 
     :value
     ).where(
-      :article_created_at.gte => params.start_range, 
-      :article_created_at.lte => params.end_range, 
-      :ego_id => ego.id, 
-      :provenance => "article_tweet_score"
+      where
     ).sort(
       :score.desc
     ).paginate(
@@ -27,14 +32,16 @@ class Score
   end
   
   def self.scores_for_popularity(params)
+    where = {:article_created_at.gte => params.start_range,
+    :article_created_at.lte => params.end_range,
+    :ego_id => nil, 
+    :provenance => "score_url"}
+    where.article_terms = /.*(,| |^)#{Regexp.escape(params.query)}.*/i if params.query && !params.query.empty?
     Score.fields(
     :article_id,
     :value
     ).where(
-      :article_created_at.gte => params.start_range,
-      :article_created_at.lte => params.end_range,
-      :ego_id => nil, 
-      :provenance => "score_url"
+      where
     ).sort(
       :score.desc
     ).paginate(

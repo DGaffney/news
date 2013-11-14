@@ -13,7 +13,6 @@ class NPRNews < Crawler
     while !articles.empty?
       articles.each do |article|
         next if !Article.first(:url => article.links.first.to_s).nil?
-        ScoreURL.perform_async(article.links.first.to_s)
         ProcessArticle.perform_async(article, "npr")
       end
       offset += limit

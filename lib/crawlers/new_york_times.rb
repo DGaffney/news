@@ -9,7 +9,6 @@ class NewYorkTimes < Crawler
 
       nyt.results.each do |article|
         next if !Article.first(:url => article.url).nil?
-        ScoreURL.perform_async(article.url)
         ProcessArticle.perform_async(article, "new_york_times")
       end
 

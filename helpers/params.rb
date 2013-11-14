@@ -34,7 +34,8 @@ module ParamsHelper
       :html_page_title => "The News", 
       :page_title => "The News",
       :start_range => params.start_range,
-      :end_range => params.end_range
+      :end_range => params.end_range,
+      :query => params[:query]
     }
   end
 end

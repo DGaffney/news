@@ -6,7 +6,6 @@ class Salon < Crawler
     feed.entries.each do |article|
       url = Nokogiri::HTML(article.content).search("a").select{|a| a.text == "Continue Reading..."}.first.attributes.href.value rescue nil
       next if !Article.first(:url => url).nil? || url.nil?
-      ScoreURL.perform_async(url)
       ProcessArticle.perform_async(JSON.parse(article.to_json), "salon")
     end
   end

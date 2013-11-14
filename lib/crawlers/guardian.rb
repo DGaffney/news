@@ -9,7 +9,6 @@ class Guardian < Crawler
       
       guardian.results.each do |article|
         next if !Article.first(:url => article.webUrl).nil?
-        ScoreURL.perform_async(article.webUrl)
         ProcessArticle.perform_async(article, "guardian")
       end
 

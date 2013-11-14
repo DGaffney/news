@@ -25,6 +25,7 @@ class ProcessArticle
     Account.where(:domain => "twitter").fields(:_id).each do |account|
       ScoreTweetForArticle.perform_async(article.id, account.id)
     end
+    ScoreURL.perform_async(article.id)
   end
   
 end

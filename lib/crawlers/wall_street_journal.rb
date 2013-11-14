@@ -11,7 +11,6 @@ class WallStreetJournal < Crawler
           url = resp.base_uri.to_s
         end
         next if !Article.first(:url => url).nil?
-        ScoreURL.perform_async(url)
         ProcessArticle.perform_async(JSON.parse(article.to_json).merge({actual_url: url}), "wall_street_journal")
       end
     end
