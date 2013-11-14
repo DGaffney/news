@@ -15,7 +15,7 @@ class Score
     :article_created_at.lte => params.end_range, 
     :ego_id => ego.id, 
     :provenance => "article_tweet_score"}
-    where.article_terms = /.*(,| |^)#{Regexp.escape(params.query)}.*/i if params.query && !params.query.empty?
+    where.article_terms = params.query.split(" ").collect{|term| /.*(,| |^)#{Regexp.escape(term)}.*/i} if params.query && !params.query.empty?
     Score.fields(
     :article_id, 
     :value
@@ -36,7 +36,7 @@ class Score
     :article_created_at.lte => params.end_range,
     :ego_id => nil, 
     :provenance => "score_url"}
-    where.article_terms = /.*(,| |^)#{Regexp.escape(params.query)}.*/i if params.query && !params.query.empty?
+    where.article_terms = params.query.split(" ").collect{|term| /.*(,| |^)#{Regexp.escape(term)}.*/i} if params.query && !params.query.empty?
     Score.fields(
     :article_id,
     :value
