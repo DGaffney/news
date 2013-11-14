@@ -9,7 +9,7 @@ module ParamsHelper
   end
 
   def news_locals(params)
-    params.start_range ||= params.time.nil? ? Time.parse(Time.now.ymd) : Time.parse(params[:time].split(" - ").first)
+    params.start_range ||= params.time.nil? ? Time.parse((Time.now-60*60*24*7).ymd) : Time.parse(params[:time].split(" - ").first)
     params.end_range ||= params.time.nil? ? Time.parse(Time.now.ymd+" 23:59:59") : Time.parse(params[:time].split(" - ").last+" 23:59:59")
     params.personal_relevance = params.personal_relevance.nil? ? 0 : params.personal_relevance.to_f/100
     params.objective_importance = params.objective_importance.nil? ? 0 : params.objective_importance.to_f/100
