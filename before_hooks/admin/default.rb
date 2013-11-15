@@ -2,6 +2,10 @@ before do
   authenticate_for(current_ego, :path => request.path, :method => request.env["REQUEST_METHOD"], :params => params)
 end
 
+before "/" do
+  @locals = news_locals(params.merge(pagination_conditions(params)))
+end
+
 before "/admin/:model" do
   params[:page] ||= 1
   params[:per_page] ||= 25

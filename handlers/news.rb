@@ -1,5 +1,5 @@
 get "/" do
-  redirect "/news"
+  erb :index, :locals => @locals
 end
 get "/.json" do
   redirect "/news.json"
