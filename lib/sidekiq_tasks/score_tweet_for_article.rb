@@ -15,8 +15,8 @@ class ScoreTweetForArticle
     ego_id = Ego.fields(:_id).where(:account_ids => BSON::ObjectId(account_id)).first.id
     score = (article_topics&topics).length.to_f/topics.length
     if !score.is_nan?
-      Score.first_or_create(:article_id => article.id, :ego_id => ego_id, :provenance => "article_tweet_score", :article_created_at => article.created_at, :article_terms => article.key_terms)
-      Score.increment({:article_id => article.id, :ego_id => ego_id, :provenance => "article_tweet_score", :article_created_at => article.created_at}, :value => score)
+      Score.first_or_create(:article_id => article.id, :ego_id => ego_id, :provenance => "article_tweet_score", :article_created_at => article.created_at, :article_terms => article.key_terms).update_attributes(:value => score)
+      UpdateArticleEgoScore.perform_async(article.id, ego_id)
     end
   end
 end

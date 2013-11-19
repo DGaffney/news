@@ -3,7 +3,7 @@ module ParamsHelper
   def pagination_conditions(params)
     {
       :order => params[:order]                                  || :created_at.desc,
-      :per_page => params[:per_page] && params[:per_page].to_i  || 68,
+      :per_page => params[:per_page] && params[:per_page].to_i  || 69,
       :page => params[:page] && params[:page].to_i              || 1
     }
   end
@@ -12,7 +12,7 @@ module ParamsHelper
     puts params.inspect
     params.start_range ||= params.time.nil? ? Time.parse((Time.now-60*60*24*7).ymd) : Time.parse(params[:time].split(" - ").first)
     params.end_range ||= params.time.nil? ? Time.parse(Time.now.ymd+" 23:59:59") : Time.parse(params[:time].split(" - ").last+" 23:59:59")
-    params.personal_relevance = params.personal_relevance.nil? ? 0 : params.personal_relevance.to_f/100
+    params.personal_relevance = params.personal_relevance.nil? || current_ego.nil? ? 0 : params.personal_relevance.to_f/100
     params.objective_importance = params.objective_importance.nil? ? 0 : params.objective_importance.to_f/100
     puts params.inspect
     personal_relevance_article_ids = current_ego.nil? ? {} : Hash[Score.scores_for_ego(current_ego, params)]

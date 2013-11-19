@@ -10,11 +10,12 @@ class Score
   belongs_to :article
   belongs_to :ego
   timestamps!
+
   def self.scores_for_ego(ego, params)
     where = {:article_created_at.gte => params.start_range, 
     :article_created_at.lte => params.end_range, 
     :ego_id => ego.id, 
-    :provenance => "article_tweet_score"}
+    :provenance => "personal_score"}
     where.article_terms = params.query.split(" ").collect{|term| /.*(,| |^)#{Regexp.escape(term)}.*/i} if params.query && !params.query.empty?
     Score.fields(
     :article_id, 
