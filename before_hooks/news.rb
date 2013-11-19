@@ -5,3 +5,7 @@ end
 before "/news*" do
   @locals = news_locals(params.merge(pagination_conditions(params)))
 end
+
+before "/" do
+  @locals = news_locals(params.merge(pagination_conditions(params)))
+end
