@@ -9,10 +9,12 @@ module ParamsHelper
   end
 
   def news_locals(params)
+    puts params.inspect
     params.start_range ||= params.time.nil? ? Time.parse((Time.now-60*60*24*7).ymd) : Time.parse(params[:time].split(" - ").first)
     params.end_range ||= params.time.nil? ? Time.parse(Time.now.ymd+" 23:59:59") : Time.parse(params[:time].split(" - ").last+" 23:59:59")
     params.personal_relevance = params.personal_relevance.nil? ? 0 : params.personal_relevance.to_f/100
     params.objective_importance = params.objective_importance.nil? ? 0 : params.objective_importance.to_f/100
+    puts params.inspect
     personal_relevance_article_ids = current_ego.nil? ? {} : Hash[Score.scores_for_ego(current_ego, params)]
     objective_importance_article_ids = Hash[Score.scores_for_popularity(params)]
     articles = Hash[Article.where(:id => (objective_importance_article_ids.keys+personal_relevance_article_ids.keys).uniq).fields(:title, :url, :_id, :content, :publisher_code).collect{|a| [a.id, a]}]
