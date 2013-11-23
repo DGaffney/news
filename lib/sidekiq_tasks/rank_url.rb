@@ -3,6 +3,7 @@ class RankURL
   def perform(article_id)
     # bitly_score = BitlyScorer.percentile(url)
     article = Article.find(article_id) || Article.first(:url => article_id)
+    return nil if article.created_at < Time.now-60*60*24*7*4
     shared_count_scores = SharedCountScorer.percentile(article.url)
     score = shared_count_scores.values
     # score << bitly_score
