@@ -2,6 +2,7 @@ class UpdateArticleEgoScore
   include Sidekiq::Worker
   def perform(article_id, ego_id)
     scores = Score.fields(:value, :provenance, :article_created_at, :article_terms).where(:article_id => article_id, :ego_id => ego_id)
+    return nil if scores.first.nil?
     article_created_at = scores.first.article_created_at
     article_terms = scores.first.article_terms
     score_percentiles = {}
