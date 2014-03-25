@@ -18,7 +18,7 @@ class ProcessArticle
   include ForeignAffairsArticleProcessor
   include NewYorkerArticleProcessor
   include Sidekiq::Worker
-  
+  sidekiq_options :queue => :news_source  
   def perform(article, provenance)
     article = self.send("process_#{provenance}", Hash[article])
     UpdateTopics.perform_async(article.id)

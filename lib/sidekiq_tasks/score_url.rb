@@ -7,6 +7,6 @@ class ScoreURL
     SharedCountScorer.store_raw(article.url)
     # BitlyScorer.store_raw(url)
     RankURL.perform_async(article.id)
-    ScoreURL.perform_in(1.day, article.id)
+    # ScoreURL.perform_in(1.day, article.id)
   end
 end

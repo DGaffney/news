@@ -8,7 +8,7 @@ class RankURL
     score = shared_count_scores.values
     # score << bitly_score
     Score.first_or_create(article_id: article.id, provenance: "score_url", value: score.average, article_created_at: article.published_at, :article_terms => article.key_terms)
-    RankURL.perform_in(1.day, article.url)
+    # RankURL.perform_in(1.day, article.url)
   end
 end
 # Article.fields(:url).each do |article|

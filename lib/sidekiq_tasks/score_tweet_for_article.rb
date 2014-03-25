@@ -13,6 +13,7 @@ class ScoreTweetForArticle
     half_elbow = twitter_account_topics.values.elbow_cutoff/2
     topics = twitter_account_topics.collect{|k,v| k if v >= half_elbow}.compact
     ego_id = Ego.fields(:_id).where(:account_ids => BSON::ObjectId(account_id)).first.id
+    return nil if (article_topics&topics).length == 0 && topics.length == 0
     score = (article_topics&topics).length.to_f/topics.length
     if !score.is_nan?
       Score.first_or_create(:article_id => article.id, :ego_id => ego_id, :provenance => "article_tweet_score", :article_created_at => article.created_at, :article_terms => article.key_terms).update_attributes(:value => score)
